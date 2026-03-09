@@ -3,12 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Zap, LayoutDashboard, Users, Settings, Menu, X } from "lucide-react";
+import { Zap, LayoutDashboard, Users, CalendarDays, Settings, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Dashboard", href: "/", icon: LayoutDashboard },
   { label: "Leads", href: "/leads", icon: Users },
+  { label: "Calendar", href: "/calendar", icon: CalendarDays },
   { label: "Settings", href: "/settings", icon: Settings },
 ];
 

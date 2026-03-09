@@ -3,6 +3,7 @@ import type {
   LeadScore,
   ActivityItem,
   DailyStats,
+  Appointment,
 } from "./types";
 
 // ---------------------------------------------------------------------------
@@ -580,6 +581,31 @@ export const activityFeed: ActivityItem[] = [
     leadId: "lead-007",
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Helper functions
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// Appointments — March 9–15, 2026
+// ---------------------------------------------------------------------------
+
+export const appointments: Appointment[] = [
+  { id: "appt-001", leadId: "lead-003", leadName: "Linda Chen", service: "electrical", score: "HOT", address: "7340 N Dreamy Draw Dr, Phoenix, AZ", status: "completed", date: "2026-03-09", startTime: "10:00", endTime: "11:30", notes: "Electrical panel sparking — safety inspection." },
+  { id: "appt-002", leadId: "lead-001", leadName: "Sarah Mitchell", service: "plumbing", score: "HOT", address: "4821 E Baseline Rd, Phoenix, AZ", status: "confirmed", date: "2026-03-09", startTime: "14:00", endTime: "15:30", notes: "Emergency water heater replacement. 50-gal Rheem." },
+  { id: "appt-003", leadId: "lead-005", leadName: "Amanda Foster", service: "plumbing", score: "HOT", address: "8812 N Central Ave, Phoenix, AZ", status: "pending", date: "2026-03-10", startTime: "08:30", endTime: "09:30", notes: "Gas leak inspection near water heater." },
+  { id: "appt-004", leadId: "lead-002", leadName: "James Rodriguez", service: "HVAC", score: "HOT", address: "1130 W Camelback Rd, Phoenix, AZ", status: "pending", date: "2026-03-10", startTime: "13:00", endTime: "14:30", notes: "AC unit dead — 15yr Trane. Emergency assessment." },
+  { id: "appt-005", leadId: "lead-004", leadName: "Robert Davis", service: "plumbing", score: "HOT", address: "2955 S Rural Rd, Tempe, AZ", status: "confirmed", date: "2026-03-11", startTime: "09:00", endTime: "10:30", notes: "Burst pipe in basement. Water damage assessment." },
+  { id: "appt-006", leadId: "lead-007", leadName: "Karen Williams", service: "painting", score: "WARM", address: "5520 E Indian School Rd, Phoenix, AZ", status: "confirmed", date: "2026-03-11", startTime: "14:00", endTime: "15:00", notes: "Interior painting estimate — 3 rooms." },
+  { id: "appt-007", leadId: "lead-011", leadName: "Patricia Brown", service: "plumbing", score: "WARM", address: "9125 E Via Linda, Scottsdale, AZ", status: "pending", date: "2026-03-12", startTime: "10:00", endTime: "11:00", notes: "Slow drains — kitchen and bathtub." },
+  { id: "appt-008", leadId: "lead-006", leadName: "Michael Torres", service: "roofing", score: "WARM", address: "3401 W Thunderbird Rd, Phoenix, AZ", status: "confirmed", date: "2026-03-13", startTime: "08:00", endTime: "09:30", notes: "Storm damage roof inspection." },
+  { id: "appt-009", leadId: "lead-009", leadName: "Jennifer Adams", service: "remodeling", score: "WARM", address: "6630 N Scottsdale Rd, Scottsdale, AZ", status: "confirmed", date: "2026-03-14", startTime: "11:00", endTime: "12:30", notes: "Guest bathroom remodel consultation." },
+  { id: "appt-010", leadId: "lead-008", leadName: "David Kim", service: "plumbing", score: "WARM", address: "1420 S Mill Ave, Tempe, AZ", status: "pending", date: "2026-03-15", startTime: "10:00", endTime: "11:00", notes: "Water heater consultation — tankless options." },
+];
+
+export function getAppointmentsByDate(date: string): Appointment[] {
+  return appointments.filter((a) => a.date === date);
+}
 
 // ---------------------------------------------------------------------------
 // Helper functions

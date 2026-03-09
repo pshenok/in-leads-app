@@ -52,3 +52,19 @@ export interface DailyStats {
   warm: number;
   cold: number;
 }
+
+export type AppointmentStatus = "confirmed" | "pending" | "completed";
+
+export interface Appointment {
+  id: string;
+  leadId: string;
+  leadName: string;
+  service: string;
+  score: LeadScore;
+  address: string;
+  status: AppointmentStatus;
+  date: string;       // "2026-03-10"
+  startTime: string;  // "09:00"
+  endTime: string;    // "10:30"
+  notes: string;
+}
