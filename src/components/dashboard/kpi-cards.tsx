@@ -41,18 +41,20 @@ export function KpiCards() {
       {kpis.map((kpi) => (
         <div
           key={kpi.label}
-          className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5"
+          className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:shadow-lg hover:shadow-primary/5"
         >
           <div className="flex items-center justify-between">
             <span className="text-sm text-muted-foreground">{kpi.label}</span>
-            <kpi.icon className="h-5 w-5 text-muted-foreground" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary to-amber-500">
+              <kpi.icon className="h-5 w-5 text-white" />
+            </div>
           </div>
           <div className="mt-3">
-            <span className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-wide">
+            <span className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-wide text-foreground">
               {kpi.value}
             </span>
           </div>
-          <div className="mt-2 flex items-center gap-1 text-xs text-green-400">
+          <div className="mt-2 flex items-center gap-1 text-xs text-green-600">
             <svg
               className="h-3 w-3"
               fill="none"

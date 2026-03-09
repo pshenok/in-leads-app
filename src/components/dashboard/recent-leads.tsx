@@ -16,17 +16,17 @@ function getRelativeTime(dateStr: string): string {
 }
 
 const platformColors: Record<string, string> = {
-  Thumbtack: "bg-blue-500/20 text-blue-400",
-  Angi: "bg-green-500/20 text-green-400",
-  Yelp: "bg-red-500/20 text-red-400",
+  Thumbtack: "bg-blue-50 text-blue-600",
+  Angi: "bg-green-50 text-green-600",
+  Yelp: "bg-red-50 text-red-600",
 };
 
 export function RecentLeads() {
   const recentLeads = getRecentLeads(5);
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
-      <h2 className="mb-4 font-[family-name:var(--font-display)] text-xl tracking-wider">
+    <div className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
+      <h2 className="mb-4 font-[family-name:var(--font-display)] text-xl tracking-wider text-foreground">
         RECENT LEADS
       </h2>
       <div className="space-y-3">
@@ -34,7 +34,7 @@ export function RecentLeads() {
           <Link
             key={lead.id}
             href={`/leads/${lead.id}`}
-            className="flex flex-col gap-2 rounded-lg border border-transparent bg-secondary/50 px-4 py-3 transition-colors hover:border-primary/20 hover:bg-secondary sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+            className="flex flex-col gap-2 rounded-lg border border-border bg-card px-4 py-3 shadow-sm transition-all hover:shadow-md sm:flex-row sm:items-center sm:justify-between sm:gap-4"
           >
             <div className="flex items-center gap-4">
               <div>

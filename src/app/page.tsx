@@ -7,7 +7,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider">
+        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
           DASHBOARD
         </h1>
         <p className="mt-1 text-muted-foreground">Welcome back, Mike</p>

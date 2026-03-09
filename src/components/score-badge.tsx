@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils";
 import type { LeadScore } from "@/lib/types";
 
 const scoreStyles: Record<LeadScore, string> = {
-  HOT: "bg-red-500/20 text-red-400 border-red-500/30",
-  WARM: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-  COLD: "bg-gray-500/20 text-gray-400 border-gray-500/30",
+  HOT: "bg-red-50 text-red-600 border-red-200",
+  WARM: "bg-orange-50 text-orange-600 border-orange-200",
+  COLD: "bg-gray-100 text-gray-500 border-gray-300",
 };
 
 interface ScoreBadgeProps {
