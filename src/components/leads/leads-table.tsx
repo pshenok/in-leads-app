@@ -37,8 +37,8 @@ interface LeadsTableProps {
 
 export function LeadsTable({ leads }: LeadsTableProps) {
   return (
-    <div className="rounded-xl border border-border bg-card">
-      <Table>
+    <div className="rounded-xl border border-border bg-card overflow-x-auto transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
+      <Table className="min-w-[700px]">
         <TableHeader>
           <TableRow className="border-border hover:bg-transparent">
             <TableHead>Name</TableHead>

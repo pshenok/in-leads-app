@@ -33,7 +33,7 @@ const platforms: Platform[] = [
 export function PlatformsSection() {
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-border bg-card p-6">
+      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
         <h2 className="text-lg font-semibold">Connected Platforms</h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Manage your lead source integrations
@@ -43,7 +43,7 @@ export function PlatformsSection() {
       {platforms.map((platform) => (
         <div
           key={platform.name}
-          className="flex items-center justify-between rounded-xl border border-border bg-card p-6"
+          className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 sm:flex-row sm:items-center sm:justify-between"
         >
           <div className="flex items-center gap-4">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-sm font-bold">

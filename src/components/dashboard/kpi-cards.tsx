@@ -37,11 +37,11 @@ const kpis = [
 
 export function KpiCards() {
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
       {kpis.map((kpi) => (
         <div
           key={kpi.label}
-          className="rounded-xl border border-border bg-card p-6"
+          className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5"
         >
           <div className="flex items-center justify-between">
             <span className="text-sm text-muted-foreground">{kpi.label}</span>

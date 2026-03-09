@@ -32,7 +32,7 @@ export default function SettingsPage() {
         </p>
       </div>
 
-      <Tabs defaultValue="profile">
+      <Tabs defaultValue="profile" className="w-full">
         <TabsList className="h-auto flex-wrap gap-1 bg-transparent p-0">
           {tabs.map((tab) => (
             <TabsTrigger

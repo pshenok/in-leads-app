@@ -11,7 +11,7 @@ const dotColors: Record<ActivityItem["type"], string> = {
 
 export function ActivityFeed() {
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
+    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
       <h2 className="mb-4 font-[family-name:var(--font-display)] text-xl tracking-wider">
         ACTIVITY
       </h2>

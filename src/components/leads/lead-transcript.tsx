@@ -6,7 +6,7 @@ interface LeadTranscriptProps {
 
 export function LeadTranscript({ transcript }: LeadTranscriptProps) {
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
+    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
       <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider">
         CALL TRANSCRIPT
       </h2>

@@ -16,7 +16,7 @@ export function ScoreBadge({ score, size = "sm" }: ScoreBadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center justify-center rounded-full border font-[family-name:var(--font-mono)] text-xs font-medium uppercase",
+        "inline-flex items-center justify-center rounded-full border font-[family-name:var(--font-mono)] text-xs font-medium uppercase transition-transform duration-200 hover:scale-110",
         scoreStyles[score],
         size === "sm" ? "px-2 py-0.5" : "px-3 py-1"
       )}

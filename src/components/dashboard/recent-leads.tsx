@@ -25,7 +25,7 @@ export function RecentLeads() {
   const recentLeads = getRecentLeads(5);
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
+    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
       <h2 className="mb-4 font-[family-name:var(--font-display)] text-xl tracking-wider">
         RECENT LEADS
       </h2>
@@ -34,7 +34,7 @@ export function RecentLeads() {
           <Link
             key={lead.id}
             href={`/leads/${lead.id}`}
-            className="flex items-center justify-between rounded-lg border border-transparent bg-secondary/50 px-4 py-3 transition-colors hover:border-primary/20 hover:bg-secondary"
+            className="flex flex-col gap-2 rounded-lg border border-transparent bg-secondary/50 px-4 py-3 transition-colors hover:border-primary/20 hover:bg-secondary sm:flex-row sm:items-center sm:justify-between sm:gap-4"
           >
             <div className="flex items-center gap-4">
               <div>
@@ -46,7 +46,7 @@ export function RecentLeads() {
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               <span
                 className={`rounded-full px-2 py-0.5 text-xs font-medium ${platformColors[lead.platform] ?? ""}`}
               >

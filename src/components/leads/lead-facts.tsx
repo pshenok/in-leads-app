@@ -15,9 +15,9 @@ export function LeadFacts({ lead }: LeadFactsProps) {
   return (
     <div className="space-y-4">
       {/* Facts grid */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Urgency */}
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
           <div className="flex items-center gap-2 text-muted-foreground">
             <AlertTriangle className="h-4 w-4" />
             <span className="text-xs font-medium uppercase tracking-wider">
@@ -32,7 +32,7 @@ export function LeadFacts({ lead }: LeadFactsProps) {
         </div>
 
         {/* Budget */}
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
           <div className="flex items-center gap-2 text-muted-foreground">
             <DollarSign className="h-4 w-4" />
             <span className="text-xs font-medium uppercase tracking-wider">
@@ -45,7 +45,7 @@ export function LeadFacts({ lead }: LeadFactsProps) {
         </div>
 
         {/* Competing Quotes */}
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
           <div className="flex items-center gap-2 text-muted-foreground">
             <BarChart3 className="h-4 w-4" />
             <span className="text-xs font-medium uppercase tracking-wider">
@@ -58,7 +58,7 @@ export function LeadFacts({ lead }: LeadFactsProps) {
         </div>
 
         {/* Property Type */}
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
           <div className="flex items-center gap-2 text-muted-foreground">
             <Home className="h-4 w-4" />
             <span className="text-xs font-medium uppercase tracking-wider">
@@ -72,7 +72,7 @@ export function LeadFacts({ lead }: LeadFactsProps) {
       </div>
 
       {/* Description */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
         <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
           Description
         </span>

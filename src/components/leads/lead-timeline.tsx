@@ -33,7 +33,7 @@ interface LeadTimelineProps {
 
 export function LeadTimeline({ timeline }: LeadTimelineProps) {
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
+    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
       <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider">
         TIMELINE
       </h2>

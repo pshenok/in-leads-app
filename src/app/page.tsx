@@ -13,8 +13,8 @@ export default function DashboardPage() {
         <p className="mt-1 text-muted-foreground">Welcome back, Mike</p>
       </div>
       <KpiCards />
-      <div className="grid grid-cols-3 gap-6">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
           <LeadsChart />
         </div>
         <ActivityFeed />

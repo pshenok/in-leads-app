@@ -31,7 +31,7 @@ export function AlertsSection() {
   };
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
+    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
       <h2 className="text-lg font-semibold">Notification Preferences</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Choose how and when you get alerted about new leads

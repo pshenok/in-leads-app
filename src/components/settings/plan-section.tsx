@@ -20,8 +20,8 @@ export function PlanSection() {
   return (
     <div className="space-y-6">
       {/* Current plan card */}
-      <div className="rounded-xl border border-border bg-card p-6">
-        <div className="flex items-start justify-between">
+      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h2 className="text-lg font-semibold">Growth Plan</h2>
             <p className="mt-1 text-sm text-muted-foreground">
@@ -42,7 +42,7 @@ export function PlanSection() {
       </div>
 
       {/* Usage card */}
-      <div className="rounded-xl border border-border bg-card p-6">
+      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
         <h3 className="font-semibold">Monthly Usage</h3>
         <div className="mt-4">
           <Progress value={71}>
@@ -57,7 +57,7 @@ export function PlanSection() {
       </div>
 
       {/* Upgrade card */}
-      <div className="rounded-xl border border-border bg-card p-6">
+      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
         <Button
           size="lg"
           className="w-full text-base"
