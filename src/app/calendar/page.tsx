@@ -24,7 +24,7 @@ export default function CalendarPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider">
+        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
           CALENDAR
         </h1>
         <p className="text-muted-foreground mt-1">AI-booked appointments</p>

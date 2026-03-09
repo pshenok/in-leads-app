@@ -30,14 +30,14 @@ export function DaySelector({ weekDays, selectedDay, onSelectDay, today }: DaySe
             className={cn(
               "flex min-w-[44px] flex-1 flex-col items-center gap-0.5 rounded-lg py-2 text-xs font-medium transition-colors",
               isSelected
-                ? "border border-primary bg-primary/10 text-primary"
-                : "text-muted-foreground hover:bg-secondary"
+                ? "bg-primary text-white"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
             )}
           >
             <span>{DAY_LABELS[i]}</span>
             <span className="text-sm font-bold">{dateNum}</span>
             {isToday && (
-              <span className="h-1 w-1 rounded-full bg-primary" />
+              <span className={cn("h-1 w-1 rounded-full", isSelected ? "bg-white" : "bg-primary")} />
             )}
           </button>
         );

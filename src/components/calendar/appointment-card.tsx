@@ -4,14 +4,14 @@ import { cn } from "@/lib/utils";
 
 const scoreBorderColor: Record<string, string> = {
   HOT: "border-l-red-500",
-  WARM: "border-l-amber-500",
-  COLD: "border-l-gray-500",
+  WARM: "border-l-orange-500",
+  COLD: "border-l-gray-400",
 };
 
 const statusDot: Record<string, string> = {
   confirmed: "bg-green-500",
-  pending: "bg-amber-500",
-  completed: "bg-blue-500",
+  pending: "bg-orange-500",
+  completed: "bg-gray-400",
 };
 
 interface AppointmentCardProps {
@@ -24,7 +24,7 @@ export function AppointmentCard({ appointment, heightPx }: AppointmentCardProps)
     <Link
       href={`/leads/${appointment.leadId}`}
       className={cn(
-        "block rounded-md border-l-4 bg-card/90 px-2 py-1.5 transition-colors hover:bg-card",
+        "block rounded-md border-l-[3px] bg-card shadow-sm px-2 py-1.5 transition-colors hover:shadow-md",
         scoreBorderColor[appointment.score]
       )}
       style={heightPx ? { height: `${heightPx}px` } : undefined}
