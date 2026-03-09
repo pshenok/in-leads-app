@@ -94,9 +94,9 @@ export function ServicesSection() {
   return (
     <div className="space-y-4">
       {/* Header card */}
-      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-all duration-200 shadow-sm hover:shadow-md sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-semibold">Services & Pricing</h2>
+          <h2 className="text-lg font-semibold text-foreground">Services & Pricing</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Define your services and pricing so AI can accurately qualify leads
             and discuss costs during calls.
@@ -118,7 +118,7 @@ export function ServicesSection() {
         return (
           <div
             key={index}
-            className="rounded-xl border border-border bg-card transition-all duration-200 hover:shadow-lg hover:shadow-primary/5"
+            className="rounded-xl border border-border bg-card transition-all duration-200 shadow-sm hover:shadow-md"
           >
             {/* Header row */}
             <button
@@ -131,7 +131,7 @@ export function ServicesSection() {
               </div>
 
               <div className="flex min-w-0 flex-1 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-                <span className="truncate text-lg font-semibold">
+                <span className="truncate text-lg font-semibold text-foreground">
                   {service.name}
                 </span>
                 <Badge variant="secondary" className="w-fit">
@@ -140,7 +140,7 @@ export function ServicesSection() {
               </div>
 
               <div className="flex shrink-0 items-center gap-3">
-                <span className="flex items-center gap-1 font-[family-name:var(--font-mono)] text-sm text-amber-500">
+                <span className="flex items-center gap-1 font-[family-name:var(--font-mono)] text-sm text-primary">
                   <DollarSign className="h-3.5 w-3.5" />
                   {service.price.replace(/^\$/, "")}
                 </span>
@@ -173,7 +173,7 @@ export function ServicesSection() {
                     <Label className="text-sm text-muted-foreground">
                       AI Instructions
                     </Label>
-                    <div className="rounded-lg border-l-2 border-amber-500/50 bg-amber-500/5 pl-0.5">
+                    <div className="rounded-lg border-l-2 border-primary bg-primary/5 pl-0.5">
                       <Textarea
                         rows={3}
                         defaultValue={service.aiNotes}

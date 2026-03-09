@@ -20,15 +20,15 @@ export function PlanSection() {
   return (
     <div className="space-y-6">
       {/* Current plan card */}
-      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
+      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 shadow-sm hover:shadow-md">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h2 className="text-lg font-semibold">Growth Plan</h2>
+            <h2 className="text-lg font-semibold text-foreground">Growth Plan</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Your current subscription
             </p>
           </div>
-          <span className="text-3xl font-bold text-amber-500">$99/mo</span>
+          <span className="text-3xl font-bold text-primary">$99/mo</span>
         </div>
 
         <ul className="mt-6 space-y-3">
@@ -42,8 +42,8 @@ export function PlanSection() {
       </div>
 
       {/* Usage card */}
-      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
-        <h3 className="font-semibold">Monthly Usage</h3>
+      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 shadow-sm hover:shadow-md">
+        <h3 className="font-semibold text-foreground">Monthly Usage</h3>
         <div className="mt-4">
           <Progress value={71}>
             <ProgressLabel className="text-sm text-muted-foreground">
@@ -57,7 +57,7 @@ export function PlanSection() {
       </div>
 
       {/* Upgrade card */}
-      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
+      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 shadow-sm hover:shadow-md">
         <Button
           size="lg"
           className="w-full text-base"

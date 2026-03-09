@@ -31,8 +31,8 @@ export function AlertsSection() {
   };
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
-      <h2 className="text-lg font-semibold">Notification Preferences</h2>
+    <div className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:shadow-md">
+      <h2 className="text-lg font-semibold text-foreground">Notification Preferences</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Choose how and when you get alerted about new leads
       </p>
@@ -58,7 +58,7 @@ export function AlertsSection() {
               key={toggle.id}
               className="flex items-center justify-between rounded-lg border border-border bg-secondary/50 px-4 py-3"
             >
-              <span className="text-sm font-medium">{toggle.label}</span>
+              <span className="text-sm font-medium text-foreground">{toggle.label}</span>
               <Switch
                 checked={toggles[toggle.id]}
                 onCheckedChange={(checked: boolean) =>

@@ -14,8 +14,8 @@ export function ProfileSection() {
   const [email, setEmail] = useState("mike@mikesplumbing.com");
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
-      <h2 className="text-lg font-semibold">Profile Information</h2>
+    <div className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:shadow-md">
+      <h2 className="text-lg font-semibold text-foreground">Profile Information</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Update your personal and business details
       </p>
@@ -68,7 +68,7 @@ export function ProfileSection() {
       </div>
 
       <div className="mt-8">
-        <Button onClick={() => alert("Changes saved!")}>Save Changes</Button>
+        <Button className="bg-gradient-to-r from-primary to-amber-500 text-white" onClick={() => alert("Changes saved!")}>Save Changes</Button>
       </div>
     </div>
   );

@@ -27,8 +27,8 @@ export function AiScriptSection() {
   const [tone, setTone] = useState("professional");
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
-      <h2 className="text-lg font-semibold">AI Voice Script</h2>
+    <div className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:shadow-md">
+      <h2 className="text-lg font-semibold text-foreground">AI Voice Script</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Configure what your AI agent says during lead calls
       </p>

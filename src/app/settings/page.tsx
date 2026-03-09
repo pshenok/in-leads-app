@@ -26,7 +26,7 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider">
+        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
           SETTINGS
         </h1>
         <p className="mt-1 text-muted-foreground">
@@ -40,7 +40,7 @@ export default function SettingsPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="rounded-lg border border-transparent px-4 py-2 data-[active]:border-border data-[active]:bg-secondary"
+              className="rounded-lg border border-transparent px-4 py-2 text-muted-foreground data-[active]:border-border data-[active]:bg-card data-[active]:text-primary data-[active]:shadow-sm"
             >
               {tab.label}
             </TabsTrigger>
