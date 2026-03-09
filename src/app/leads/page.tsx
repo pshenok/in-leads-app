@@ -49,7 +49,7 @@ export default function LeadsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider">
+          <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
             LEADS
           </h1>
           <p className="text-muted-foreground mt-1">

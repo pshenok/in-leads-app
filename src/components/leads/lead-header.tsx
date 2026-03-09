@@ -20,11 +20,11 @@ const platformColors: Record<string, string> = {
 };
 
 const statusColors: Record<LeadStatus, string> = {
-  new: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  called: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-  qualified: "bg-green-500/20 text-green-400 border-green-500/30",
-  booked: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-  lost: "bg-red-500/20 text-red-400 border-red-500/30",
+  new: "bg-blue-50 text-blue-700 border-blue-200",
+  called: "bg-amber-50 text-amber-700 border-amber-200",
+  qualified: "bg-green-50 text-green-700 border-green-200",
+  booked: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  lost: "bg-red-50 text-red-600 border-red-200",
 };
 
 interface LeadHeaderProps {
@@ -45,7 +45,7 @@ export function LeadHeader({ lead }: LeadHeaderProps) {
 
       {/* Name, score, status row */}
       <div className="flex flex-wrap items-center gap-3">
-        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider">
+        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
           {lead.name.toUpperCase()}
         </h1>
         <ScoreBadge score={lead.score} size="md" />
@@ -81,6 +81,7 @@ export function LeadHeader({ lead }: LeadHeaderProps) {
       <div className="flex flex-wrap gap-3">
         <Button
           variant="outline"
+          className="border-primary text-primary hover:bg-primary/5"
           onClick={() => alert("Demo: action would be triggered")}
         >
           <Phone className="h-4 w-4" data-icon="inline-start" />
@@ -88,12 +89,16 @@ export function LeadHeader({ lead }: LeadHeaderProps) {
         </Button>
         <Button
           variant="outline"
+          className="border-primary text-primary hover:bg-primary/5"
           onClick={() => alert("Demo: action would be triggered")}
         >
           <MessageSquare className="h-4 w-4" data-icon="inline-start" />
           Send SMS
         </Button>
-        <Button onClick={() => alert("Demo: action would be triggered")}>
+        <Button
+          className="bg-gradient-to-r from-primary to-amber-500 text-white border-0"
+          onClick={() => alert("Demo: action would be triggered")}
+        >
           <CheckCircle className="h-4 w-4" data-icon="inline-start" />
           Mark as Booked
         </Button>

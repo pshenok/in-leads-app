@@ -19,11 +19,11 @@ const platformColors: Record<string, string> = {
 };
 
 const statusColors: Record<LeadStatus, string> = {
-  new: "text-blue-400",
-  called: "text-amber-400",
-  qualified: "text-green-400",
-  booked: "text-emerald-400",
-  lost: "text-red-400",
+  new: "text-blue-600",
+  called: "text-amber-600",
+  qualified: "text-green-600",
+  booked: "text-emerald-600",
+  lost: "text-red-500",
 };
 
 function formatDate(dateStr: string): string {
@@ -37,10 +37,10 @@ interface LeadsTableProps {
 
 export function LeadsTable({ leads }: LeadsTableProps) {
   return (
-    <div className="rounded-xl border border-border bg-card overflow-x-auto transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
+    <div className="rounded-xl border border-border bg-card shadow-sm overflow-x-auto">
       <Table className="min-w-[700px]">
         <TableHeader>
-          <TableRow className="border-border hover:bg-transparent">
+          <TableRow className="border-border bg-muted hover:bg-muted">
             <TableHead>Name</TableHead>
             <TableHead>Service</TableHead>
             <TableHead>Platform</TableHead>
@@ -54,7 +54,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
           {leads.map((lead) => (
             <TableRow
               key={lead.id}
-              className="border-border cursor-pointer transition-colors hover:bg-secondary/60"
+              className="border-border cursor-pointer transition-colors hover:bg-accent"
             >
               <TableCell>
                 <Link
@@ -100,7 +100,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                   <span
                     className={`font-[family-name:var(--font-mono)] text-xs ${
                       lead.responseTime < 30
-                        ? "text-amber-400"
+                        ? "text-amber-600"
                         : "text-muted-foreground"
                     }`}
                   >

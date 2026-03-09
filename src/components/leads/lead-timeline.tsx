@@ -4,12 +4,12 @@ const eventStyles: Record<
   TimelineEvent["type"],
   { dot: string; label: string }
 > = {
-  received: { dot: "bg-blue-400", label: "Lead Received" },
-  ai_called: { dot: "bg-amber-400", label: "AI Called" },
-  call_completed: { dot: "bg-green-400", label: "Call Completed" },
-  sms_sent: { dot: "bg-purple-400", label: "SMS Sent" },
-  scored: { dot: "bg-amber-400", label: "Scored" },
-  retry: { dot: "bg-yellow-400", label: "Retry" },
+  received: { dot: "bg-blue-500", label: "Lead Received" },
+  ai_called: { dot: "bg-amber-500", label: "AI Called" },
+  call_completed: { dot: "bg-green-500", label: "Call Completed" },
+  sms_sent: { dot: "bg-purple-500", label: "SMS Sent" },
+  scored: { dot: "bg-amber-500", label: "Scored" },
+  retry: { dot: "bg-yellow-500", label: "Retry" },
 };
 
 function formatTime(timeStr: string): string {
@@ -22,8 +22,8 @@ function formatTime(timeStr: string): string {
 }
 
 function getScoredDotColor(detail: string): string {
-  if (detail.toLowerCase().includes("hot")) return "bg-red-400";
-  if (detail.toLowerCase().includes("warm")) return "bg-amber-400";
+  if (detail.toLowerCase().includes("hot")) return "bg-red-500";
+  if (detail.toLowerCase().includes("warm")) return "bg-amber-500";
   return "bg-gray-400";
 }
 
@@ -33,13 +33,13 @@ interface LeadTimelineProps {
 
 export function LeadTimeline({ timeline }: LeadTimelineProps) {
   return (
-    <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5">
-      <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider">
+    <div className="rounded-xl border border-border bg-card shadow-sm p-6">
+      <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider text-foreground">
         TIMELINE
       </h2>
       <div className="relative space-y-6">
         {/* Vertical connecting line */}
-        <div className="absolute left-[7px] top-2 bottom-2 w-px border-l border-dashed border-amber-500/40" />
+        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
 
         {timeline.map((event, i) => {
           const style = eventStyles[event.type];
