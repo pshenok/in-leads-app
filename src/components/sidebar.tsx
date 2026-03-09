@@ -16,7 +16,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-60 flex-col border-r border-border bg-[#0a0a0a] lg:flex">
+    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-60 flex-col border-r border-border bg-card lg:flex">
       {/* Logo */}
       <div className="flex items-center gap-2 px-6 py-6">
         <Zap className="h-6 w-6 text-primary" />
@@ -40,8 +40,8 @@ export function Sidebar() {
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:bg-secondary"
+                  ? "border-l-[3px] border-l-primary bg-primary/8 text-primary"
+                  : "border-l-[3px] border-l-transparent text-muted-foreground hover:bg-accent"
               )}
             >
               <item.icon className="h-5 w-5" />
@@ -61,7 +61,7 @@ export function Sidebar() {
             <span className="text-sm font-medium text-foreground">
               Mike&apos;s Plumbing
             </span>
-            <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-wider text-muted-foreground">
+            <span className="inline-block rounded-full bg-gradient-to-r from-primary to-amber-500 px-2 py-0.5 font-[family-name:var(--font-mono)] text-[10px] tracking-wider text-white">
               GROWTH PLAN
             </span>
           </div>

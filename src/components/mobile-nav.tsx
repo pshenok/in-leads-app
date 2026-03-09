@@ -20,7 +20,7 @@ export function MobileNav() {
   return (
     <>
       {/* Top bar */}
-      <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-border bg-[#0a0a0a] px-4 lg:hidden">
+      <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-border bg-card px-4 shadow-sm lg:hidden">
         <div className="flex items-center gap-2">
           <Zap className="h-5 w-5 text-primary" />
           <span className="font-[family-name:var(--font-display)] text-xl tracking-wider text-foreground">
@@ -29,7 +29,7 @@ export function MobileNav() {
         </div>
         <button
           onClick={() => setOpen(!open)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-secondary"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-accent"
           aria-label={open ? "Close menu" : "Open menu"}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -39,7 +39,7 @@ export function MobileNav() {
       {/* Overlay */}
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm lg:hidden"
           onClick={() => setOpen(false)}
         />
       )}
@@ -47,7 +47,7 @@ export function MobileNav() {
       {/* Sidebar overlay */}
       <aside
         className={cn(
-          "fixed left-0 top-0 z-50 flex h-screen w-60 flex-col border-r border-border bg-[#0a0a0a] transition-transform duration-300 lg:hidden",
+          "fixed left-0 top-0 z-50 flex h-screen w-60 flex-col border-r border-border bg-card shadow-lg transition-transform duration-300 lg:hidden",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
@@ -61,7 +61,7 @@ export function MobileNav() {
           </div>
           <button
             onClick={() => setOpen(false)}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             aria-label="Close menu"
           >
             <X className="h-4 w-4" />
@@ -84,8 +84,8 @@ export function MobileNav() {
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-secondary"
+                    ? "border-l-[3px] border-l-primary bg-primary/8 text-primary"
+                    : "border-l-[3px] border-l-transparent text-muted-foreground hover:bg-accent"
                 )}
               >
                 <item.icon className="h-5 w-5" />
@@ -105,7 +105,7 @@ export function MobileNav() {
               <span className="text-sm font-medium text-foreground">
                 Mike&apos;s Plumbing
               </span>
-              <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-wider text-muted-foreground">
+              <span className="inline-block rounded-full bg-gradient-to-r from-primary to-amber-500 px-2 py-0.5 font-[family-name:var(--font-mono)] text-[10px] tracking-wider text-white">
                 GROWTH PLAN
               </span>
             </div>
