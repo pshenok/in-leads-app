@@ -7,6 +7,7 @@ import {
   TabsContent,
 } from "@/components/ui/tabs";
 import { ProfileSection } from "@/components/settings/profile-section";
+import { ServicesSection } from "@/components/settings/services-section";
 import { PlatformsSection } from "@/components/settings/platforms-section";
 import { AiScriptSection } from "@/components/settings/ai-script-section";
 import { AlertsSection } from "@/components/settings/alerts-section";
@@ -14,6 +15,7 @@ import { PlanSection } from "@/components/settings/plan-section";
 
 const tabs = [
   { value: "profile", label: "Profile", component: ProfileSection },
+  { value: "services", label: "Services & Pricing", component: ServicesSection },
   { value: "platforms", label: "Platforms", component: PlatformsSection },
   { value: "ai-script", label: "AI Script", component: AiScriptSection },
   { value: "alerts", label: "Alerts", component: AlertsSection },
