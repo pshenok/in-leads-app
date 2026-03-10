@@ -7,10 +7,10 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
+        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-gray-900">
           DASHBOARD
         </h1>
-        <p className="mt-1 text-muted-foreground">Welcome back, Mike</p>
+        <p className="mt-1 text-gray-500">Welcome back, Mike</p>
       </div>
       <KpiCards />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
