@@ -94,7 +94,7 @@ export function ServicesSection() {
   return (
     <div className="space-y-4">
       {/* Header card */}
-      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 transition-all duration-200 shadow-sm hover:shadow-md sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-lg font-semibold text-foreground">Services & Pricing</h2>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -118,7 +118,7 @@ export function ServicesSection() {
         return (
           <div
             key={index}
-            className="rounded-xl border border-border bg-card transition-all duration-200 shadow-sm hover:shadow-md"
+            className="rounded-xl border border-gray-200 bg-white hover:border-gray-300"
           >
             {/* Header row */}
             <button
@@ -173,7 +173,7 @@ export function ServicesSection() {
                     <Label className="text-sm text-muted-foreground">
                       AI Instructions
                     </Label>
-                    <div className="rounded-lg border-l-2 border-primary bg-primary/5 pl-0.5">
+                    <div className="rounded-lg border-l-2 border-gray-300 bg-gray-50 pl-0.5">
                       <Textarea
                         rows={3}
                         defaultValue={service.aiNotes}

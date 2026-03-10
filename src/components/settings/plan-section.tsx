@@ -20,7 +20,7 @@ export function PlanSection() {
   return (
     <div className="space-y-6">
       {/* Current plan card */}
-      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 shadow-sm hover:shadow-md">
+      <div className="rounded-xl border border-gray-200 bg-white p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h2 className="text-lg font-semibold text-foreground">Growth Plan</h2>
@@ -28,7 +28,7 @@ export function PlanSection() {
               Your current subscription
             </p>
           </div>
-          <span className="text-3xl font-bold text-primary">$99/mo</span>
+          <span className="text-3xl font-bold text-gray-900">$99/mo</span>
         </div>
 
         <ul className="mt-6 space-y-3">
@@ -42,7 +42,7 @@ export function PlanSection() {
       </div>
 
       {/* Usage card */}
-      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 shadow-sm hover:shadow-md">
+      <div className="rounded-xl border border-gray-200 bg-white p-6">
         <h3 className="font-semibold text-foreground">Monthly Usage</h3>
         <div className="mt-4">
           <Progress value={71}>
@@ -57,7 +57,7 @@ export function PlanSection() {
       </div>
 
       {/* Upgrade card */}
-      <div className="rounded-xl border border-border bg-card p-6 transition-all duration-200 shadow-sm hover:shadow-md">
+      <div className="rounded-xl border border-gray-200 bg-white p-6">
         <Button
           size="lg"
           className="w-full text-base"

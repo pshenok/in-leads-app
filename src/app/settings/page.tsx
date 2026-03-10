@@ -40,7 +40,7 @@ export default function SettingsPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="rounded-lg border border-transparent px-4 py-2 text-muted-foreground data-[active]:border-border data-[active]:bg-card data-[active]:text-primary data-[active]:shadow-sm"
+              className="rounded-lg border border-transparent px-4 py-2 text-muted-foreground data-[active]:border-border data-[active]:bg-card data-[active]:text-primary"
             >
               {tab.label}
             </TabsTrigger>

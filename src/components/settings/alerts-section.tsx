@@ -31,7 +31,7 @@ export function AlertsSection() {
   };
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:shadow-md">
+    <div className="rounded-xl border border-gray-200 bg-white p-6">
       <h2 className="text-lg font-semibold text-foreground">Notification Preferences</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Choose how and when you get alerted about new leads
@@ -56,7 +56,7 @@ export function AlertsSection() {
           {alertToggles.map((toggle) => (
             <div
               key={toggle.id}
-              className="flex items-center justify-between rounded-lg border border-border bg-secondary/50 px-4 py-3"
+              className="flex items-center justify-between rounded-lg border border-border bg-gray-50 px-4 py-3"
             >
               <span className="text-sm font-medium text-foreground">{toggle.label}</span>
               <Switch
