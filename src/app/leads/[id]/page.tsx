@@ -20,10 +20,10 @@ export default async function LeadDetailPage({
     return (
       <div className="flex h-[50vh] items-center justify-center">
         <div className="text-center">
-          <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
+          <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-gray-900">
             LEAD NOT FOUND
           </h1>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-gray-500">
             The lead you are looking for does not exist.
           </p>
         </div>

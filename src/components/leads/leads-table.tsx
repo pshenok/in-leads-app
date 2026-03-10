@@ -10,20 +10,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ScoreBadge } from "@/components/score-badge";
-import type { Lead, LeadStatus } from "@/lib/types";
+import type { Lead } from "@/lib/types";
 
-const platformColors: Record<string, string> = {
-  Thumbtack: "bg-[#009fd4]/20 text-[#009fd4]",
-  Angi: "bg-[#f57c00]/20 text-[#f57c00]",
-  Yelp: "bg-[#d32323]/20 text-[#d32323]",
-};
-
-const statusColors: Record<LeadStatus, string> = {
-  new: "text-blue-600",
-  called: "text-amber-600",
-  qualified: "text-green-600",
-  booked: "text-emerald-600",
-  lost: "text-red-500",
+const platformLabel: Record<string, string> = {
+  Thumbtack: "Thumbtack",
+  Angi: "Angi",
+  Yelp: "Yelp",
 };
 
 function formatDate(dateStr: string): string {
@@ -37,29 +29,29 @@ interface LeadsTableProps {
 
 export function LeadsTable({ leads }: LeadsTableProps) {
   return (
-    <div className="rounded-xl border border-border bg-card shadow-sm overflow-x-auto">
+    <div className="border border-gray-200 rounded-xl overflow-hidden overflow-x-auto">
       <Table className="min-w-[700px]">
         <TableHeader>
-          <TableRow className="border-border bg-muted hover:bg-muted">
-            <TableHead>Name</TableHead>
-            <TableHead>Service</TableHead>
-            <TableHead>Platform</TableHead>
-            <TableHead>Score</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Response</TableHead>
-            <TableHead>Date</TableHead>
+          <TableRow className="bg-gray-50 border-gray-200 hover:bg-gray-50">
+            <TableHead className="text-gray-500 text-xs uppercase tracking-wider">Name</TableHead>
+            <TableHead className="text-gray-500 text-xs uppercase tracking-wider">Service</TableHead>
+            <TableHead className="text-gray-500 text-xs uppercase tracking-wider">Platform</TableHead>
+            <TableHead className="text-gray-500 text-xs uppercase tracking-wider">Score</TableHead>
+            <TableHead className="text-gray-500 text-xs uppercase tracking-wider">Status</TableHead>
+            <TableHead className="text-gray-500 text-xs uppercase tracking-wider">Response</TableHead>
+            <TableHead className="text-gray-500 text-xs uppercase tracking-wider">Date</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="divide-y divide-gray-100">
           {leads.map((lead) => (
             <TableRow
               key={lead.id}
-              className="border-border cursor-pointer transition-colors hover:bg-accent"
+              className="border-gray-100 cursor-pointer transition-colors hover:bg-gray-50"
             >
               <TableCell>
                 <Link
                   href={`/leads/${lead.id}`}
-                  className="block font-medium text-foreground"
+                  className="block font-medium text-gray-900"
                 >
                   {lead.name}
                 </Link>
@@ -67,17 +59,15 @@ export function LeadsTable({ leads }: LeadsTableProps) {
               <TableCell>
                 <Link
                   href={`/leads/${lead.id}`}
-                  className="block text-muted-foreground"
+                  className="block text-gray-500"
                 >
                   {lead.service}
                 </Link>
               </TableCell>
               <TableCell>
                 <Link href={`/leads/${lead.id}`} className="block">
-                  <span
-                    className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${platformColors[lead.platform] ?? ""}`}
-                  >
-                    {lead.platform}
+                  <span className="text-sm text-gray-500">
+                    {platformLabel[lead.platform] ?? lead.platform}
                   </span>
                 </Link>
               </TableCell>
@@ -88,22 +78,14 @@ export function LeadsTable({ leads }: LeadsTableProps) {
               </TableCell>
               <TableCell>
                 <Link href={`/leads/${lead.id}`} className="block">
-                  <span
-                    className={`font-medium capitalize ${statusColors[lead.status]}`}
-                  >
+                  <span className="text-sm text-gray-500 capitalize">
                     {lead.status}
                   </span>
                 </Link>
               </TableCell>
               <TableCell>
                 <Link href={`/leads/${lead.id}`} className="block">
-                  <span
-                    className={`font-[family-name:var(--font-mono)] text-xs ${
-                      lead.responseTime < 30
-                        ? "text-amber-600"
-                        : "text-muted-foreground"
-                    }`}
-                  >
+                  <span className="font-[family-name:var(--font-mono)] text-xs text-gray-500">
                     {lead.responseTime}s
                   </span>
                 </Link>
@@ -111,7 +93,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
               <TableCell>
                 <Link
                   href={`/leads/${lead.id}`}
-                  className="block text-xs text-muted-foreground"
+                  className="block text-xs text-gray-400"
                 >
                   {formatDate(lead.createdAt)}
                 </Link>
@@ -122,7 +104,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
             <TableRow>
               <TableCell
                 colSpan={7}
-                className="h-24 text-center text-muted-foreground"
+                className="h-24 text-center text-gray-500"
               >
                 No leads match your filters.
               </TableCell>

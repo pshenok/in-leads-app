@@ -31,7 +31,7 @@ export function LeadsFilters({ onFilterChange, filters }: LeadsFiltersProps) {
     <div className="flex flex-wrap items-center gap-3">
       {/* Search input */}
       <div className="relative flex-1 min-w-[220px]">
-        <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
         <Input
           placeholder="Search by name or service..."
           value={filters.search}

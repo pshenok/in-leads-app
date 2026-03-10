@@ -49,10 +49,10 @@ export default function LeadsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
+          <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-gray-900">
             LEADS
           </h1>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-gray-500 mt-1">
             {filteredLeads.length} total leads
           </p>
         </div>

@@ -33,13 +33,13 @@ interface LeadTimelineProps {
 
 export function LeadTimeline({ timeline }: LeadTimelineProps) {
   return (
-    <div className="rounded-xl border border-border bg-card shadow-sm p-6">
-      <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider text-foreground">
+    <div className="border border-gray-200 rounded-xl p-6">
+      <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider text-gray-900">
         TIMELINE
       </h2>
       <div className="relative space-y-6">
         {/* Vertical connecting line */}
-        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
+        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gray-200" />
 
         {timeline.map((event, i) => {
           const style = eventStyles[event.type];
@@ -53,19 +53,19 @@ export function LeadTimeline({ timeline }: LeadTimelineProps) {
               {/* Dot */}
               <div className="relative z-10 mt-1 flex-shrink-0">
                 <div
-                  className={`h-[14px] w-[14px] rounded-full border-2 border-background ${dotColor}`}
+                  className={`h-[14px] w-[14px] rounded-full border-2 border-white ${dotColor}`}
                 />
               </div>
 
               {/* Content */}
               <div className="flex-1 min-w-0">
-                <span className="text-sm font-medium text-foreground">
+                <span className="text-sm font-medium text-gray-900">
                   {style.label}
                 </span>
-                <p className="mt-0.5 text-sm text-muted-foreground">
+                <p className="mt-0.5 text-sm text-gray-500">
                   {event.detail}
                 </p>
-                <span className="mt-0.5 block font-[family-name:var(--font-mono)] text-xs text-muted-foreground/70">
+                <span className="mt-0.5 block font-[family-name:var(--font-mono)] text-xs text-gray-400">
                   {formatTime(event.time)}
                 </span>
               </div>

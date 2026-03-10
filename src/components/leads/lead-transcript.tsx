@@ -6,8 +6,8 @@ interface LeadTranscriptProps {
 
 export function LeadTranscript({ transcript }: LeadTranscriptProps) {
   return (
-    <div className="rounded-xl border border-border bg-card shadow-sm p-6">
-      <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider text-foreground">
+    <div className="border border-gray-200 rounded-xl p-6">
+      <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider text-gray-900">
         CALL TRANSCRIPT
       </h2>
       <div className="space-y-3">
@@ -18,21 +18,19 @@ export function LeadTranscript({ transcript }: LeadTranscriptProps) {
               key={i}
               className={`rounded-lg p-3 ${
                 isAI
-                  ? "border-l-2 border-primary bg-orange-50"
-                  : "border-l-2 border-gray-300 bg-muted"
+                  ? "bg-gray-50"
+                  : "bg-white border border-gray-200"
               }`}
             >
               <div className="mb-1 flex items-center justify-between">
-                <span
-                  className="font-[family-name:var(--font-mono)] text-[10px] font-medium uppercase tracking-wider text-muted-foreground"
-                >
+                <span className="font-[family-name:var(--font-mono)] text-[10px] font-medium uppercase tracking-wider text-gray-500">
                   {isAI ? "AI Agent" : "Customer"}
                 </span>
-                <span className="font-[family-name:var(--font-mono)] text-[10px] text-muted-foreground">
+                <span className="font-[family-name:var(--font-mono)] text-[10px] text-gray-400">
                   {line.timestamp}
                 </span>
               </div>
-              <p className="text-sm leading-relaxed text-foreground">
+              <p className="text-sm leading-relaxed text-gray-900">
                 {line.text}
               </p>
             </div>
