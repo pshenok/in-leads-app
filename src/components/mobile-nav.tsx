@@ -3,11 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Zap, LayoutDashboard, Users, CalendarDays, Settings, Menu, X } from "lucide-react";
+import {
+  Zap,
+  LayoutDashboard,
+  Users,
+  CalendarDays,
+  Settings,
+  Menu,
+  X,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Dashboard", href: "/", icon: LayoutDashboard },
+  { label: "Home", href: "/", icon: LayoutDashboard },
   { label: "Leads", href: "/leads", icon: Users },
   { label: "Calendar", href: "/calendar", icon: CalendarDays },
   { label: "Settings", href: "/settings", icon: Settings },
@@ -19,99 +27,59 @@ export function MobileNav() {
 
   return (
     <>
-      {/* Top bar */}
-      <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-border bg-card px-4 shadow-sm lg:hidden">
-        <div className="flex items-center gap-2">
-          <Zap className="h-5 w-5 text-primary" />
-          <span className="font-[family-name:var(--font-display)] text-xl tracking-wider text-foreground">
+      {/* Header bar */}
+      <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-gray-200 bg-white px-4 lg:hidden">
+        <Link href="/" className="flex items-center gap-2">
+          <Zap className="h-5 w-5 text-orange-500" />
+          <span className="font-[family-name:var(--font-display)] text-xl tracking-wider text-gray-900">
             INLEADS
           </span>
-        </div>
+        </Link>
         <button
           onClick={() => setOpen(!open)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-accent"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 transition-colors hover:bg-gray-100"
           aria-label={open ? "Close menu" : "Open menu"}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </header>
 
-      {/* Overlay */}
       {open && (
-        <div
-          className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm lg:hidden"
-          onClick={() => setOpen(false)}
-        />
-      )}
-
-      {/* Sidebar overlay */}
-      <aside
-        className={cn(
-          "fixed left-0 top-0 z-50 flex h-screen w-60 flex-col border-r border-border bg-card shadow-lg transition-transform duration-300 lg:hidden",
-          open ? "translate-x-0" : "-translate-x-full"
-        )}
-      >
-        {/* Logo */}
-        <div className="flex items-center justify-between px-6 py-6">
-          <div className="flex items-center gap-2">
-            <Zap className="h-6 w-6 text-primary" />
-            <span className="font-[family-name:var(--font-display)] text-2xl tracking-wider text-foreground">
-              INLEADS
-            </span>
-          </div>
-          <button
+        <>
+          {/* Transparent overlay to close menu */}
+          <div
+            className="fixed inset-0 top-14 z-40 lg:hidden"
             onClick={() => setOpen(false)}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-            aria-label="Close menu"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
+          />
 
-        {/* Navigation */}
-        <nav className="flex-1 space-y-1 px-3">
-          {navItems.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+          {/* Dropdown menu */}
+          <nav className="fixed inset-x-0 top-14 z-50 border-b border-gray-200 bg-white p-2 lg:hidden">
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                  isActive
-                    ? "border-l-[3px] border-l-primary bg-primary/8 text-primary"
-                    : "border-l-[3px] border-l-transparent text-muted-foreground hover:bg-accent"
-                )}
-              >
-                <item.icon className="h-5 w-5" />
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* User area */}
-        <div className="border-t border-border px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-black">
-              M
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-medium text-foreground">
-                Mike&apos;s Plumbing
-              </span>
-              <span className="inline-block rounded-full bg-gradient-to-r from-primary to-amber-500 px-2 py-0.5 font-[family-name:var(--font-mono)] text-[10px] tracking-wider text-white">
-                GROWTH PLAN
-              </span>
-            </div>
-          </div>
-        </div>
-      </aside>
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors",
+                    isActive
+                      ? "font-semibold text-gray-900 bg-gray-50"
+                      : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
+                  )}
+                >
+                  <item.icon className="h-5 w-5" />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </>
+      )}
     </>
   );
 }
