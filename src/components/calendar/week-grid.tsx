@@ -60,7 +60,7 @@ export function WeekGrid({ appointments, weekDays, selectedDay, today }: WeekGri
             <div key={`row-${hour}`} className="contents">
               {/* Time label */}
               <div
-                className="flex items-start justify-end pr-3 pt-1 text-xs text-muted-foreground font-[family-name:var(--font-mono)] border-b border-border/50"
+                className="flex items-start justify-end pr-3 pt-1 text-xs text-gray-400 font-[family-name:var(--font-mono)] border-b border-gray-200"
                 style={{ height: `${ROW_HEIGHT}px` }}
               >
                 {formatHour(hour)}
@@ -77,8 +77,8 @@ export function WeekGrid({ appointments, weekDays, selectedDay, today }: WeekGri
                   <div
                     key={`${day}-${hour}`}
                     className={cn(
-                      "relative border-b border-l border-border/50",
-                      isToday && "bg-primary/5"
+                      "relative border-b border-l border-gray-200",
+                      isToday && "bg-gray-50"
                     )}
                     style={{ height: `${ROW_HEIGHT}px` }}
                   >
@@ -118,18 +118,18 @@ export function WeekGrid({ appointments, weekDays, selectedDay, today }: WeekGri
             return (
               <div
                 key={`mobile-${hour}`}
-                className="grid border-b border-border/50"
+                className="grid border-b border-gray-200"
                 style={{
                   gridTemplateColumns: "56px 1fr",
                   minHeight: `${ROW_HEIGHT}px`,
                 }}
               >
                 {/* Time label */}
-                <div className="flex items-start justify-end pr-3 pt-1 text-xs text-muted-foreground font-[family-name:var(--font-mono)]">
+                <div className="flex items-start justify-end pr-3 pt-1 text-xs text-gray-400 font-[family-name:var(--font-mono)]">
                   {formatHour(hour)}
                 </div>
                 {/* Appointment slot */}
-                <div className="relative border-l border-border/50">
+                <div className="relative border-l border-gray-200">
                   {dayAppointments.map((appt) => {
                     const { minute } = parseTime(appt.startTime);
                     const duration = getDurationHours(appt.startTime, appt.endTime);

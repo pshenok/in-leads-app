@@ -24,13 +24,13 @@ export default function CalendarPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-foreground">
+        <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-gray-900">
           CALENDAR
         </h1>
-        <p className="text-muted-foreground mt-1">AI-booked appointments</p>
+        <p className="text-gray-500 mt-1">AI-booked appointments</p>
       </div>
       <CalendarStats appointments={appointments} today={TODAY} />
-      <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
         <WeekHeader weekDays={WEEK_DAYS} today={TODAY} />
         <DaySelector
           weekDays={WEEK_DAYS}

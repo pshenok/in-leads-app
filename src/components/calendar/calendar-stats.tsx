@@ -40,16 +40,16 @@ export function CalendarStats({ appointments, today }: CalendarStatsProps) {
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="rounded-xl bg-card shadow-sm p-4 transition-all duration-200 hover:shadow-md"
+          className="rounded-xl border border-gray-200 bg-white p-4 transition-colors duration-200 hover:border-gray-300"
         >
           <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">{stat.label}</span>
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary to-amber-500">
-              <stat.icon className="h-4 w-4 text-white" />
+            <span className="text-sm text-gray-500">{stat.label}</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
+              <stat.icon className="h-4 w-4 text-gray-600" />
             </div>
           </div>
           <div className="mt-2">
-            <span className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-wide text-foreground">
+            <span className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-wide text-gray-900">
               {stat.value}
             </span>
           </div>

@@ -16,22 +16,22 @@ function formatDateNum(dateStr: string): string {
 
 export function WeekHeader({ weekDays, today }: WeekHeaderProps) {
   return (
-    <div className="border-b border-border px-4 py-3">
+    <div className="border-b border-gray-200 px-4 py-3">
       {/* Week title row */}
       <div className="flex items-center justify-between">
         <button
           onClick={() => alert("Previous week — demo only")}
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors hover:text-gray-700"
           aria-label="Previous week"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
-        <h2 className="font-[family-name:var(--font-display)] text-xl tracking-wider">
+        <h2 className="font-[family-name:var(--font-display)] text-xl tracking-wider text-gray-900">
           MARCH 9 &mdash; 15, 2026
         </h2>
         <button
           onClick={() => alert("Next week — demo only")}
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors hover:text-gray-700"
           aria-label="Next week"
         >
           <ChevronRight className="h-4 w-4" />
@@ -48,13 +48,13 @@ export function WeekHeader({ weekDays, today }: WeekHeaderProps) {
 
           return (
             <div key={day} className="flex items-center justify-center gap-1.5 py-1">
-              <span className="text-xs font-medium text-muted-foreground">{DAY_LABELS[i]}</span>
+              <span className="text-xs font-medium text-gray-500">{DAY_LABELS[i]}</span>
               <span
                 className={cn(
                   "flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold",
                   isToday
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-900"
                 )}
               >
                 {dateNum}
