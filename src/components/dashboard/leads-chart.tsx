@@ -8,9 +8,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { dailyStats } from "@/lib/mock-data";
+import type { DailyStats } from "@/lib/types";
 
-export function LeadsChart() {
+interface LeadsChartProps {
+  dailyStats: DailyStats[];
+}
+
+export function LeadsChart({ dailyStats }: LeadsChartProps) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-gray-300">
       <h2 className="mb-6 font-[family-name:var(--font-display)] text-xl tracking-wider text-gray-900">

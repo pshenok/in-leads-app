@@ -1,41 +1,43 @@
 import { Users, Flame, Clock, Target } from "lucide-react";
-import { leads } from "@/lib/mock-data";
+import type { DashboardStats } from "@/lib/api";
 
-const hotLeads = leads.filter((l) => l.score === "HOT");
-const avgResponse = Math.round(
-  leads.reduce((sum, l) => sum + l.responseTime, 0) / leads.length
-);
-const bookedCount = leads.filter((l) => l.status === "booked").length;
-const conversionRate = Math.round((bookedCount / leads.length) * 100);
+interface KpiCardsProps {
+  stats: DashboardStats;
+}
 
-const kpis = [
-  {
-    label: "Total Leads",
-    value: leads.length.toString(),
-    trend: "+12% vs last week",
-    icon: Users,
-  },
-  {
-    label: "HOT Leads",
-    value: hotLeads.length.toString(),
-    trend: "+2 this week",
-    icon: Flame,
-  },
-  {
-    label: "Avg Response",
-    value: `${avgResponse}s`,
-    trend: "-8s improvement",
-    icon: Clock,
-  },
-  {
-    label: "Conversion Rate",
-    value: `${conversionRate}%`,
-    trend: "+5% vs last month",
-    icon: Target,
-  },
-];
+export function KpiCards({ stats }: KpiCardsProps) {
+  const conversionRate =
+    stats.totalLeads > 0
+      ? Math.round((stats.bookedCount / stats.totalLeads) * 100)
+      : 0;
 
-export function KpiCards() {
+  const kpis = [
+    {
+      label: "Total Leads",
+      value: stats.totalLeads.toString(),
+      trend: "+12% vs last week",
+      icon: Users,
+    },
+    {
+      label: "HOT Leads",
+      value: stats.hotCount.toString(),
+      trend: "+2 this week",
+      icon: Flame,
+    },
+    {
+      label: "Avg Response",
+      value: `${stats.avgResponseTime}s`,
+      trend: "-8s improvement",
+      icon: Clock,
+    },
+    {
+      label: "Conversion Rate",
+      value: `${conversionRate}%`,
+      trend: "+5% vs last month",
+      icon: Target,
+    },
+  ];
+
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
       {kpis.map((kpi) => (

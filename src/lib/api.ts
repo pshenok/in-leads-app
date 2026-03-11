@@ -28,16 +28,6 @@ export interface DashboardStats {
   dailyStats: { day: string; leads: number; hot: number; warm: number; cold: number }[];
 }
 
-// Backend activity response uses `createdAt` (ISO string) instead of `time`
-export interface DashboardActivity {
-  id: string;
-  type: ActivityItem['type'];
-  message: string;
-  leadId: string;
-  leadName: string;
-  createdAt: string;
-}
-
 // ── Service type (matches Prisma Service model) ────────────────────────
 
 export interface Service {
@@ -66,14 +56,6 @@ export interface Call {
   updatedAt: string;
 }
 
-// ── Backend appointment shape (includes nested lead relation) ──────────
-
-export interface AppointmentWithLead extends Omit<Appointment, 'leadName' | 'score' | 'address'> {
-  lead: { name: string; score: string };
-  createdAt: string;
-  updatedAt: string;
-}
-
 // ── API client ─────────────────────────────────────────────────────────
 
 export const api = {
@@ -96,20 +78,20 @@ export const api = {
   appointments: {
     list: (params?: Record<string, string>) => {
       const qs = params ? '?' + new URLSearchParams(params).toString() : '';
-      return request<AppointmentWithLead[]>(`/appointments${qs}`);
+      return request<Appointment[]>(`/appointments${qs}`);
     },
-    get: (id: string) => request<AppointmentWithLead>(`/appointments/${id}`),
+    get: (id: string) => request<Appointment>(`/appointments/${id}`),
     create: (data: Partial<Appointment>) =>
-      request<AppointmentWithLead>('/appointments', { method: 'POST', body: JSON.stringify(data) }),
+      request<Appointment>('/appointments', { method: 'POST', body: JSON.stringify(data) }),
     update: (id: string, data: Partial<Appointment>) =>
-      request<AppointmentWithLead>(`/appointments/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
+      request<Appointment>(`/appointments/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
     delete: (id: string) =>
       request<void>(`/appointments/${id}`, { method: 'DELETE' }),
   },
 
   dashboard: {
     stats: () => request<DashboardStats>('/dashboard/stats'),
-    activity: () => request<DashboardActivity[]>('/dashboard/activity'),
+    activity: () => request<ActivityItem[]>('/dashboard/activity'),
   },
 
   services: {
