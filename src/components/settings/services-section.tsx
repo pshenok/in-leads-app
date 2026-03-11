@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -12,84 +12,49 @@ import {
   Wrench,
   DollarSign,
 } from "lucide-react";
+import { api } from "@/lib/api";
+import type { Service } from "@/lib/api";
 
-interface Service {
-  name: string;
-  category: string;
-  price: string;
-  description: string;
-  aiNotes: string;
+function formatPrice(min: number, max: number): string {
+  return `$${min.toLocaleString()} — $${max.toLocaleString()}`;
 }
 
-const mockServices: Service[] = [
-  {
-    name: "Water Heater Repair & Replacement",
-    category: "Plumbing",
-    price: "$150 — $800",
-    description:
-      "Repair or full replacement of tank and tankless water heaters. Includes diagnostics, parts, and labor. Tankless installations start at $600. Emergency same-day service available.",
-    aiNotes:
-      "Always ask about the age and brand of the current unit. If over 10 years old, recommend replacement over repair. Ask if they want to consider tankless upgrade.",
-  },
-  {
-    name: "Drain Cleaning",
-    category: "Plumbing",
-    price: "$99 — $250",
-    description:
-      "Professional drain cleaning for kitchen, bathroom, and floor drains. Includes camera inspection for recurring clogs. Main sewer line cleaning priced separately.",
-    aiNotes:
-      "Ask which drain is affected and how long the issue has persisted. If multiple drains are slow, suspect main line issue — upsell sewer inspection.",
-  },
-  {
-    name: "Pipe Repair & Leak Fix",
-    category: "Plumbing",
-    price: "$120 — $600",
-    description:
-      "Repair leaking or burst pipes, including copper, PVC, and PEX. Water damage assessment included. Emergency callout available 24/7.",
-    aiNotes:
-      "Ask if there's visible water damage or mold. If pipe burst, flag as URGENT — prioritize scheduling. Ask if they've shut off the water supply.",
-  },
-  {
-    name: "Bathroom Remodel",
-    category: "Plumbing",
-    price: "$3,000 — $12,000",
-    description:
-      "Full and partial bathroom remodels. Includes fixture replacement, re-tiling, vanity install, and plumbing rough-in. Free design consultation.",
-    aiNotes:
-      "This is a high-value lead. Always schedule in-person consultation. Ask about budget range and timeline expectations. Mention our portfolio of past projects.",
-  },
-  {
-    name: "Sewer Line Inspection",
-    category: "Plumbing",
-    price: "$200 — $400",
-    description:
-      "HD camera inspection of sewer lines. Identifies root intrusion, cracks, bellies, and blockages. Includes video recording and written report.",
-    aiNotes:
-      "Common for home buyers. Ask if this is for a real estate transaction — if yes, offer expedited scheduling. Also offer as add-on for drain cleaning jobs.",
-  },
-  {
-    name: "Emergency Plumbing (24/7)",
-    category: "Emergency",
-    price: "$250 — $500",
-    description:
-      "After-hours and weekend emergency plumbing service. $250 base callout fee plus parts and labor. Available 24/7/365. Typical response within 45 minutes.",
-    aiNotes:
-      "Always score as HOT. Ask about the nature of emergency. If flooding or gas, instruct caller to shut off main valve immediately. Dispatch notification to Mike's phone.",
-  },
-];
-
 export function ServicesSection() {
-  const [expanded, setExpanded] = useState<Record<number, boolean>>(() => {
-    const initial: Record<number, boolean> = {};
-    mockServices.forEach((_, i) => {
-      initial[i] = i < 2;
-    });
-    return initial;
-  });
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
-  const toggleExpanded = (index: number) => {
-    setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
+  useEffect(() => {
+    async function fetchServices() {
+      try {
+        const data = await api.services.list();
+        setServices(data);
+        // Expand the first two by default
+        const initial: Record<string, boolean> = {};
+        data.forEach((s, i) => {
+          initial[s.id] = i < 2;
+        });
+        setExpanded(initial);
+      } catch (error) {
+        console.error("Failed to fetch services:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchServices();
+  }, []);
+
+  const toggleExpanded = (id: string) => {
+    setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20 text-gray-400">
+        Loading services...
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
@@ -112,18 +77,19 @@ export function ServicesSection() {
       </div>
 
       {/* Service cards */}
-      {mockServices.map((service, index) => {
-        const isExpanded = expanded[index] ?? false;
+      {services.map((service) => {
+        const isExpanded = expanded[service.id] ?? false;
+        const priceDisplay = formatPrice(service.priceMin, service.priceMax);
 
         return (
           <div
-            key={index}
+            key={service.id}
             className="rounded-xl border border-gray-200 bg-white hover:border-gray-300"
           >
             {/* Header row */}
             <button
               type="button"
-              onClick={() => toggleExpanded(index)}
+              onClick={() => toggleExpanded(service.id)}
               className="flex w-full items-center gap-3 p-6 text-left"
             >
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary">
@@ -142,7 +108,7 @@ export function ServicesSection() {
               <div className="flex shrink-0 items-center gap-3">
                 <span className="flex items-center gap-1 font-[family-name:var(--font-mono)] text-sm text-primary">
                   <DollarSign className="h-3.5 w-3.5" />
-                  {service.price.replace(/^\$/, "")}
+                  {priceDisplay.replace(/^\$/, "")}
                 </span>
                 {isExpanded ? (
                   <ChevronDown className="h-4 w-4 text-muted-foreground" />
