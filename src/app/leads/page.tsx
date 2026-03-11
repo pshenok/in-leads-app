@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { leads } from "@/lib/mock-data";
+import { useState, useEffect, useMemo } from "react";
+import { api } from "@/lib/api";
+import type { Lead } from "@/lib/types";
 import { LeadsFilters } from "@/components/leads/leads-filters";
 import { LeadsTable } from "@/components/leads/leads-table";
 
@@ -13,6 +14,8 @@ interface Filters {
 }
 
 export default function LeadsPage() {
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<Filters>({
     search: "",
     score: "all",
@@ -20,30 +23,36 @@ export default function LeadsPage() {
     status: "all",
   });
 
-  const filteredLeads = useMemo(() => {
-    return leads.filter((lead) => {
-      // Search filter — match name or service
-      if (filters.search) {
-        const q = filters.search.toLowerCase();
-        const matchesName = lead.name.toLowerCase().includes(q);
-        const matchesService = lead.service.toLowerCase().includes(q);
-        if (!matchesName && !matchesService) return false;
+  useEffect(() => {
+    async function fetchLeads() {
+      try {
+        const params: Record<string, string> = {};
+        if (filters.score !== "all") params.score = filters.score;
+        if (filters.platform !== "all") params.platform = filters.platform;
+        if (filters.status !== "all") params.status = filters.status;
+        if (filters.search) params.search = filters.search;
+
+        const data = await api.leads.list(params);
+        setLeads(data);
+      } catch (error) {
+        console.error("Failed to fetch leads:", error);
+      } finally {
+        setLoading(false);
       }
-
-      // Score filter
-      if (filters.score !== "all" && lead.score !== filters.score) return false;
-
-      // Platform filter
-      if (filters.platform !== "all" && lead.platform !== filters.platform)
-        return false;
-
-      // Status filter
-      if (filters.status !== "all" && lead.status !== filters.status)
-        return false;
-
-      return true;
-    });
+    }
+    fetchLeads();
   }, [filters]);
+
+  // Client-side search fallback (in case backend doesn't support search param)
+  const filteredLeads = useMemo(() => {
+    if (!filters.search) return leads;
+    const q = filters.search.toLowerCase();
+    return leads.filter((lead) => {
+      const matchesName = lead.name.toLowerCase().includes(q);
+      const matchesService = lead.service.toLowerCase().includes(q);
+      return matchesName || matchesService;
+    });
+  }, [leads, filters.search]);
 
   return (
     <div className="space-y-6">
@@ -53,7 +62,7 @@ export default function LeadsPage() {
             LEADS
           </h1>
           <p className="text-gray-500 mt-1">
-            {filteredLeads.length} total leads
+            {loading ? "Loading..." : `${filteredLeads.length} total leads`}
           </p>
         </div>
       </div>
