@@ -51,6 +51,37 @@ export function AgentWizard({ agentId }: AgentWizardProps) {
     api.voices.list().then(setVoices).catch(() => {});
   }, []);
 
+  // Load agent data in edit mode
+  useEffect(() => {
+    if (agentId) {
+      api.agents.get(agentId).then((agent) => {
+        setState({
+          name: agent.name,
+          firstMessage: agent.firstMessage,
+          voiceId: agent.voiceId,
+          voiceName: "",
+          businessDescription: "",
+          agentGoal: "",
+          tone: "friendly",
+          infoToCollect: "",
+          systemPrompt: agent.systemPrompt,
+        });
+      }).catch(() => {
+        router.push("/agents");
+      });
+    }
+  }, [agentId, router]);
+
+  // Resolve voiceName from voices list
+  useEffect(() => {
+    if (state.voiceId && voices.length > 0 && !state.voiceName) {
+      const v = voices.find((v) => v.id === state.voiceId);
+      if (v) {
+        setState((s) => ({ ...s, voiceName: v.name }));
+      }
+    }
+  }, [state.voiceId, voices, state.voiceName]);
+
   const updateField = useCallback(
     <K extends keyof WizardState>(field: K, value: WizardState[K]) => {
       setState((s) => ({ ...s, [field]: value }));
@@ -73,12 +104,40 @@ export function AgentWizard({ agentId }: AgentWizardProps) {
     }
   }
 
+  async function handleCreate() {
+    setSubmitting(true);
+    try {
+      const payload = {
+        name: state.name,
+        firstMessage: state.firstMessage,
+        systemPrompt: state.systemPrompt,
+        voiceId: state.voiceId,
+        voiceProvider: "11labs",
+        model: "gpt-4o",
+        modelProvider: "openai",
+        isActive: true,
+        isDefault: false,
+      };
+
+      if (agentId) {
+        await api.agents.update(agentId, payload);
+      } else {
+        await api.agents.create(payload);
+      }
+      router.push("/agents");
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to save agent");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   function handleNext() {
     if (!validateStep()) return;
     if (step < 4) {
       setStep(step + 1);
     } else {
-      // Submit — will be wired in Task 9
+      handleCreate();
     }
   }
 
