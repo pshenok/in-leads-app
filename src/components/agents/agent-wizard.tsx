@@ -1,10 +1,14 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import type { Voice } from "@/lib/api";
+import { api } from "@/lib/api";
 import { WizardLayout } from "./wizard-layout";
 import { StepBasics } from "./steps/step-basics";
 import { StepVoice } from "./steps/step-voice";
+import { StepScript } from "./steps/step-script";
+import { StepReview } from "./steps/step-review";
 
 interface WizardState {
   name: string;
@@ -41,6 +45,11 @@ export function AgentWizard({ agentId }: AgentWizardProps) {
   const [step, setStep] = useState(1);
   const [state, setState] = useState<WizardState>(initialState);
   const [submitting, setSubmitting] = useState(false);
+  const [voices, setVoices] = useState<Voice[]>([]);
+
+  useEffect(() => {
+    api.voices.list().then(setVoices).catch(() => {});
+  }, []);
 
   const updateField = useCallback(
     <K extends keyof WizardState>(field: K, value: WizardState[K]) => {
@@ -109,10 +118,23 @@ export function AgentWizard({ agentId }: AgentWizardProps) {
         />
       )}
       {step === 3 && (
-        <div className="text-center text-muted-foreground">Step 3: Script (coming soon)</div>
+        <StepScript
+          systemPrompt={state.systemPrompt}
+          agentName={state.name}
+          firstMessage={state.firstMessage}
+          onChange={(prompt) => updateField("systemPrompt", prompt)}
+        />
       )}
       {step === 4 && (
-        <div className="text-center text-muted-foreground">Step 4: Review (coming soon)</div>
+        <StepReview
+          name={state.name}
+          firstMessage={state.firstMessage}
+          voiceId={state.voiceId}
+          voiceName={state.voiceName}
+          systemPrompt={state.systemPrompt}
+          voices={voices}
+          goToStep={goToStep}
+        />
       )}
     </WizardLayout>
   );
