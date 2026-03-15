@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { WizardLayout } from "./wizard-layout";
 import { StepBasics } from "./steps/step-basics";
+import { StepVoice } from "./steps/step-voice";
 
 interface WizardState {
   name: string;
@@ -99,7 +100,13 @@ export function AgentWizard({ agentId }: AgentWizardProps) {
         />
       )}
       {step === 2 && (
-        <div className="text-center text-muted-foreground">Step 2: Voice (coming soon)</div>
+        <StepVoice
+          selectedVoiceId={state.voiceId}
+          onSelect={(voiceId, voiceName) => {
+            updateField("voiceId", voiceId);
+            updateField("voiceName", voiceName);
+          }}
+        />
       )}
       {step === 3 && (
         <div className="text-center text-muted-foreground">Step 3: Script (coming soon)</div>
