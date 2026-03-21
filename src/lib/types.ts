@@ -15,12 +15,11 @@ export interface Lead {
   responseTime: number; // seconds
   createdAt: string; // ISO date
   description: string;
-  facts: {
-    urgency: string;
-    budget: string;
-    competingQuotes: number;
-    propertyType: string;
-  };
+  // Flat fields matching backend (was nested in `facts`)
+  urgency: string;
+  budget: string;
+  competingQuotes: number;
+  propertyType: string;
   transcript?: TranscriptLine[];
   timeline: TimelineEvent[];
 }
@@ -41,8 +40,9 @@ export interface ActivityItem {
   id: string;
   type: "call" | "score" | "sms" | "booked" | "lost";
   message: string;
-  time: string;
+  createdAt: string; // ISO date from backend (was `time` with relative string)
   leadId: string;
+  leadName?: string;
 }
 
 export interface DailyStats {
@@ -58,13 +58,14 @@ export type AppointmentStatus = "confirmed" | "pending" | "completed";
 export interface Appointment {
   id: string;
   leadId: string;
-  leadName: string;
+  lead: { name: string; score: LeadScore }; // nested relation from backend
   service: string;
-  score: LeadScore;
   address: string;
   status: AppointmentStatus;
   date: string;       // "2026-03-10"
   startTime: string;  // "09:00"
   endTime: string;    // "10:30"
   notes: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

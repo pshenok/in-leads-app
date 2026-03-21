@@ -25,9 +25,9 @@ export function LeadFacts({ lead }: LeadFactsProps) {
             </span>
           </div>
           <p
-            className={`mt-2 font-[family-name:var(--font-mono)] text-lg font-semibold ${urgencyColors[lead.facts.urgency] ?? "text-gray-900"}`}
+            className={`mt-2 font-[family-name:var(--font-mono)] text-lg font-semibold ${urgencyColors[lead.urgency] ?? "text-gray-900"}`}
           >
-            {lead.facts.urgency}
+            {lead.urgency}
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export function LeadFacts({ lead }: LeadFactsProps) {
             </span>
           </div>
           <p className="mt-2 font-[family-name:var(--font-mono)] text-lg font-semibold text-gray-900">
-            {lead.facts.budget}
+            {lead.budget}
           </p>
         </div>
 
@@ -53,7 +53,7 @@ export function LeadFacts({ lead }: LeadFactsProps) {
             </span>
           </div>
           <p className="mt-2 font-[family-name:var(--font-mono)] text-lg font-semibold text-gray-900">
-            {lead.facts.competingQuotes}
+            {lead.competingQuotes}
           </p>
         </div>
 
@@ -66,7 +66,7 @@ export function LeadFacts({ lead }: LeadFactsProps) {
             </span>
           </div>
           <p className="mt-2 text-lg font-semibold text-gray-900">
-            {lead.facts.propertyType}
+            {lead.propertyType}
           </p>
         </div>
       </div>

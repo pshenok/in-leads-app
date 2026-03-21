@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { getRecentLeads } from "@/lib/mock-data";
 import { ScoreBadge } from "@/components/score-badge";
+import type { Lead } from "@/lib/types";
 
 function getRelativeTime(dateStr: string): string {
-  const now = new Date("2026-03-09T10:00:00Z");
+  const now = new Date();
   const date = new Date(dateStr);
   const diffMs = now.getTime() - date.getTime();
   const diffMin = Math.floor(diffMs / 60000);
@@ -21,16 +21,18 @@ const platformColors: Record<string, string> = {
   Yelp: "bg-gray-100 text-gray-600",
 };
 
-export function RecentLeads() {
-  const recentLeads = getRecentLeads(5);
+interface RecentLeadsProps {
+  leads: Lead[];
+}
 
+export function RecentLeads({ leads }: RecentLeadsProps) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-gray-300">
       <h2 className="mb-4 font-[family-name:var(--font-display)] text-xl tracking-wider text-gray-900">
         RECENT LEADS
       </h2>
       <div className="space-y-3">
-        {recentLeads.map((lead) => (
+        {leads.map((lead) => (
           <Link
             key={lead.id}
             href={`/leads/${lead.id}`}

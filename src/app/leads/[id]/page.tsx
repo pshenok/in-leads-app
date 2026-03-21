@@ -1,22 +1,45 @@
-import { leads, getLeadById } from "@/lib/mock-data";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { api } from "@/lib/api";
+import type { Lead } from "@/lib/types";
 import { LeadHeader } from "@/components/leads/lead-header";
 import { LeadTimeline } from "@/components/leads/lead-timeline";
 import { LeadTranscript } from "@/components/leads/lead-transcript";
 import { LeadFacts } from "@/components/leads/lead-facts";
 
-export function generateStaticParams() {
-  return leads.map((lead) => ({ id: lead.id }));
-}
+export default function LeadDetailPage() {
+  const params = useParams();
+  const id = params.id as string;
+  const [lead, setLead] = useState<Lead | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-export default async function LeadDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
-  const lead = getLeadById(id);
+  useEffect(() => {
+    async function fetchLead() {
+      try {
+        const data = await api.leads.get(id);
+        setLead(data);
+      } catch (err) {
+        console.error("Failed to fetch lead:", err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchLead();
+  }, [id]);
 
-  if (!lead) {
+  if (loading) {
+    return (
+      <div className="flex h-[50vh] items-center justify-center">
+        <div className="text-center text-gray-400">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error || !lead) {
     return (
       <div className="flex h-[50vh] items-center justify-center">
         <div className="text-center">
