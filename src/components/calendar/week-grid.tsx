@@ -5,7 +5,7 @@ import type { Appointment } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { AppointmentCard } from "./appointment-card";
 
-const HOURS = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+const HOURS = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 const ROW_HEIGHT = 72; // px per hour
 
 function formatHour(h: number): string {
@@ -38,7 +38,7 @@ export function WeekGrid({ appointments, weekDays, selectedDay, today }: WeekGri
     const map: Record<string, Appointment[]> = {};
     for (const day of weekDays) {
       map[day] = appointments
-        .filter((a) => a.date === day)
+        .filter((a) => (a.date || "").split("T")[0] === day)
         .sort((a, b) => a.startTime.localeCompare(b.startTime));
     }
     return map;

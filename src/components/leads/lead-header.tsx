@@ -8,6 +8,8 @@ import {
   MapPin,
   MessageSquare,
   CheckCircle,
+  Wrench,
+  Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScoreBadge } from "@/components/score-badge";
@@ -15,9 +17,12 @@ import type { Lead, LeadStatus } from "@/lib/types";
 
 const statusColors: Record<LeadStatus, string> = {
   new: "bg-blue-50 text-blue-700 border-blue-200",
-  called: "bg-amber-50 text-amber-700 border-amber-200",
-  qualified: "bg-green-50 text-green-700 border-green-200",
+  contacted: "bg-indigo-50 text-indigo-700 border-indigo-200",
+  called: "bg-purple-50 text-purple-700 border-purple-200",
+  qualified: "bg-amber-50 text-amber-700 border-amber-200",
+  proposal: "bg-orange-50 text-orange-700 border-orange-200",
   booked: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  won: "bg-green-50 text-green-800 border-green-200",
   lost: "bg-red-50 text-red-600 border-red-200",
 };
 
@@ -63,10 +68,24 @@ export function LeadHeader({ lead }: LeadHeaderProps) {
           <Mail className="h-4 w-4 text-gray-400" />
           <span>{lead.email}</span>
         </div>
-        <div className="flex items-center gap-2 text-sm text-gray-500">
-          <MapPin className="h-4 w-4 text-gray-400" />
-          <span>{lead.address}</span>
-        </div>
+        {lead.address && (
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <MapPin className="h-4 w-4 text-gray-400" />
+            <span>{lead.address}</span>
+          </div>
+        )}
+        {lead.service && (
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <Wrench className="h-4 w-4 text-gray-400" />
+            <span>{lead.service}</span>
+          </div>
+        )}
+        {lead.responseTime != null && lead.responseTime > 0 && (
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <Clock className="h-4 w-4 text-gray-400" />
+            <span>Response: {lead.responseTime < 60 ? `${lead.responseTime}s` : `${Math.round(lead.responseTime / 60)}m`}</span>
+          </div>
+        )}
       </div>
 
       {/* Action buttons */}

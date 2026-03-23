@@ -7,16 +7,20 @@ import {
   Zap,
   LayoutDashboard,
   Users,
+  Bot,
   CalendarDays,
   Settings,
   Menu,
   X,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/auth-context";
 
 const navItems = [
   { label: "Home", href: "/", icon: LayoutDashboard },
   { label: "Leads", href: "/leads", icon: Users },
+  { label: "Agents", href: "/agents", icon: Bot },
   { label: "Calendar", href: "/calendar", icon: CalendarDays },
   { label: "Settings", href: "/settings", icon: Settings },
 ];
@@ -24,6 +28,7 @@ const navItems = [
 export function MobileNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   return (
     <>
@@ -77,6 +82,15 @@ export function MobileNav() {
                 </Link>
               );
             })}
+            <div className="mt-1 border-t border-gray-100 pt-1">
+              <button
+                onClick={() => { setOpen(false); logout(); }}
+                className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-gray-500 transition-colors hover:text-gray-900 hover:bg-gray-50"
+              >
+                <LogOut className="h-5 w-5" />
+                Log out{user?.name ? ` (${user.name.split(" ")[0]})` : ""}
+              </button>
+            </div>
           </nav>
         </>
       )}

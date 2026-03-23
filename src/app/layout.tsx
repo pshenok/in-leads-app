@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Providers } from "@/components/providers";
 import { AppLayout } from "@/components/app-layout";
 import "./globals.css";
 
@@ -23,7 +24,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <AppLayout>{children}</AppLayout>
+        <Providers>
+          <AppLayout>{children}</AppLayout>
+        </Providers>
       </body>
     </html>
   );

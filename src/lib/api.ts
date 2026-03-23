@@ -155,6 +155,9 @@ export interface Agent {
   modelProvider: string;
   isActive: boolean;
   isDefault: boolean;
+  retryEnabled: boolean;
+  maxRetries: number;
+  retryDelaysJson: string;
   createdAt: string;
   updatedAt: string;
   _count?: { calls: number };
@@ -170,6 +173,9 @@ export interface CreateAgentData {
   modelProvider?: string;
   isActive?: boolean;
   isDefault?: boolean;
+  retryEnabled?: boolean;
+  maxRetries?: number;
+  retryDelaysJson?: string;
 }
 
 // ── Voice type (from /api/voices) ───────────────────────────────────────

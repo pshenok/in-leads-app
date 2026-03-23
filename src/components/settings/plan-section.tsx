@@ -1,19 +1,13 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Progress,
-  ProgressLabel,
-  ProgressValue,
-} from "@/components/ui/progress";
-import { Check } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 
 const features = [
-  "Up to 200 AI calls/month",
+  "Unlimited AI calls",
   "All platforms supported",
   "Advanced lead scoring",
   "Full call transcripts",
-  "Priority support",
+  "Pipeline management",
 ];
 
 export function PlanSection() {
@@ -23,12 +17,15 @@ export function PlanSection() {
       <div className="rounded-xl border border-gray-200 bg-white p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-foreground">Growth Plan</h2>
+            <h2 className="text-lg font-semibold text-foreground">Early Access</h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              Your current subscription
+              You&apos;re on the early access plan — all features included
             </p>
           </div>
-          <span className="text-3xl font-bold text-gray-900">$99/mo</span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-sm font-medium text-green-700">
+            <Sparkles className="h-3.5 w-3.5" />
+            Free
+          </span>
         </div>
 
         <ul className="mt-6 space-y-3">
@@ -41,32 +38,12 @@ export function PlanSection() {
         </ul>
       </div>
 
-      {/* Usage card */}
+      {/* Billing info */}
       <div className="rounded-xl border border-gray-200 bg-white p-6">
-        <h3 className="font-semibold text-foreground">Monthly Usage</h3>
-        <div className="mt-4">
-          <Progress value={71}>
-            <ProgressLabel className="text-sm text-muted-foreground">
-              AI calls used this month
-            </ProgressLabel>
-            <ProgressValue className="text-sm text-muted-foreground">
-              {() => "142 / 200"}
-            </ProgressValue>
-          </Progress>
-        </div>
-      </div>
-
-      {/* Upgrade card */}
-      <div className="rounded-xl border border-gray-200 bg-white p-6">
-        <Button
-          size="lg"
-          className="w-full text-base"
-          onClick={() => alert("Upgrade to Pro!")}
-        >
-          Upgrade to Pro — $199/mo
-        </Button>
-        <p className="mt-3 text-center text-sm text-muted-foreground">
-          Next billing date: April 1, 2026
+        <h3 className="font-semibold text-foreground">Billing</h3>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Paid plans with usage-based billing will be available soon.
+          During early access, all features are free.
         </p>
       </div>
     </div>

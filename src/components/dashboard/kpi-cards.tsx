@@ -15,25 +15,21 @@ export function KpiCards({ stats }: KpiCardsProps) {
     {
       label: "Total Leads",
       value: stats.totalLeads.toString(),
-      trend: "+12% vs last week",
       icon: Users,
     },
     {
       label: "HOT Leads",
       value: stats.hotCount.toString(),
-      trend: "+2 this week",
       icon: Flame,
     },
     {
       label: "Avg Response",
       value: `${stats.avgResponseTime}s`,
-      trend: "-8s improvement",
       icon: Clock,
     },
     {
       label: "Conversion Rate",
       value: `${conversionRate}%`,
-      trend: "+5% vs last month",
       icon: Target,
     },
   ];
@@ -55,22 +51,6 @@ export function KpiCards({ stats }: KpiCardsProps) {
             <span className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-wide text-gray-900">
               {kpi.value}
             </span>
-          </div>
-          <div className="mt-2 flex items-center gap-1 text-xs text-green-600">
-            <svg
-              className="h-3 w-3"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 15l7-7 7 7"
-              />
-            </svg>
-            {kpi.trend}
           </div>
         </div>
       ))}

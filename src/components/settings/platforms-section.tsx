@@ -1,34 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-
-interface Platform {
-  name: string;
-  status: "connected" | "pending";
-  description: string;
-  action: string;
-}
-
-const platforms: Platform[] = [
-  {
-    name: "Thumbtack",
-    status: "connected",
-    description: "Connected since Feb 2026",
-    action: "Disconnect",
-  },
-  {
-    name: "Angi",
-    status: "connected",
-    description: "Connected since Jan 2026",
-    action: "Disconnect",
-  },
-  {
-    name: "Yelp",
-    status: "pending",
-    description: "Waiting for email verification",
-    action: "Reconnect",
-  },
-];
+import { Link2 } from "lucide-react";
 
 export function PlatformsSection() {
   return (
@@ -40,46 +12,17 @@ export function PlatformsSection() {
         </p>
       </div>
 
-      {platforms.map((platform) => (
-        <div
-          key={platform.name}
-          className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-6 hover:border-gray-300 sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div className="flex items-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 text-sm font-bold">
-              {platform.name[0]}
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-foreground">{platform.name}</span>
-                {platform.status === "connected" ? (
-                  <span className="flex items-center gap-1.5 text-sm text-green-600">
-                    <span className="inline-block h-2 w-2 rounded-full bg-green-600" />
-                    Connected
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-1.5 text-sm text-orange-600">
-                    <span className="inline-block h-2 w-2 rounded-full bg-orange-600" />
-                    Pending
-                  </span>
-                )}
-              </div>
-              <p className="mt-0.5 text-sm text-muted-foreground">
-                {platform.description}
-              </p>
-            </div>
-          </div>
-
-          <Button
-            variant={platform.status === "connected" ? "outline" : "default"}
-            onClick={() =>
-              alert(`${platform.action} ${platform.name}`)
-            }
-          >
-            {platform.action}
-          </Button>
+      <div className="rounded-xl border border-dashed border-gray-300 bg-white p-12 text-center">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+          <Link2 className="h-6 w-6 text-gray-400" />
         </div>
-      ))}
+        <h3 className="mt-4 text-sm font-semibold text-gray-900">No platforms connected</h3>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Use the API key from the Integrations tab to receive leads from any source.
+          <br />
+          Direct platform integrations (Thumbtack, Angi, Yelp) coming soon.
+        </p>
+      </div>
     </div>
   );
 }

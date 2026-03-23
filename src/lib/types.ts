@@ -1,39 +1,73 @@
-export type LeadScore = "HOT" | "WARM" | "COLD";
-export type LeadStatus = "new" | "called" | "qualified" | "booked" | "lost";
-export type Platform = "Thumbtack" | "Angi" | "Yelp";
+export type LeadScore = "HOT" | "WARM" | "COLD" | "hot" | "warm" | "cold";
+export type LeadStatus = "new" | "contacted" | "called" | "qualified" | "proposal" | "booked" | "won" | "lost";
+export type Platform = "Thumbtack" | "Angi" | "Yelp" | "website" | string;
 
 export interface Lead {
   id: string;
   name: string;
   phone: string;
   email: string;
-  address: string;
+  address?: string;
   service: string;
   platform: Platform;
   score: LeadScore;
   status: LeadStatus;
-  responseTime: number; // seconds
+  responseTime?: number; // seconds
   createdAt: string; // ISO date
-  description: string;
+  description?: string;
   // Flat fields matching backend (was nested in `facts`)
-  urgency: string;
-  budget: string;
-  competingQuotes: number;
-  propertyType: string;
+  urgency?: string;
+  budget?: string;
+  competingQuotes?: number;
+  propertyType?: string;
   transcript?: TranscriptLine[];
-  timeline: TimelineEvent[];
+  timeline?: TimelineEvent[];
+  calls?: LeadCall[];
+  appointments?: LeadAppointment[];
+  activities?: LeadActivity[];
 }
 
 export interface TranscriptLine {
-  speaker: "ai" | "lead";
+  speaker: string;
   text: string;
   timestamp: string;
+  sortOrder?: number;
 }
 
 export interface TimelineEvent {
-  type: "received" | "ai_called" | "call_completed" | "sms_sent" | "scored" | "retry";
+  type: string;
   time: string;
   detail: string;
+}
+
+export interface LeadCall {
+  id: string;
+  vapiCallId?: string;
+  status: string;
+  duration?: number;
+  recordingUrl?: string;
+  summary?: string;
+  agentId?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface LeadAppointment {
+  id: string;
+  service: string;
+  status: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  notes?: string;
+  createdAt: string;
+}
+
+export interface LeadActivity {
+  id: string;
+  type: string;
+  message: string;
+  createdAt: string;
 }
 
 export interface ActivityItem {

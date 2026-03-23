@@ -8,6 +8,9 @@ import { LeadHeader } from "@/components/leads/lead-header";
 import { LeadTimeline } from "@/components/leads/lead-timeline";
 import { LeadTranscript } from "@/components/leads/lead-transcript";
 import { LeadFacts } from "@/components/leads/lead-facts";
+import { LeadCalls } from "@/components/leads/lead-calls";
+import { LeadAppointments } from "@/components/leads/lead-appointments";
+import { LeadActivityFeed } from "@/components/leads/lead-activity-feed";
 
 export default function LeadDetailPage() {
   const params = useParams();
@@ -54,15 +57,35 @@ export default function LeadDetailPage() {
     );
   }
 
+  const hasCalls = lead.calls && lead.calls.length > 0;
+  const hasAppointments = lead.appointments && lead.appointments.length > 0;
+  const hasTranscript = lead.transcript && lead.transcript.length > 0;
+  const hasActivities = lead.activities && lead.activities.length > 0;
+
   return (
     <div className="space-y-8">
       <LeadHeader lead={lead} />
+
+      {/* Call summary cards */}
+      {hasCalls && <LeadCalls calls={lead.calls!} />}
+
+      {/* Appointments */}
+      {hasAppointments && <LeadAppointments appointments={lead.appointments!} />}
+
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-6">
-          {lead.transcript && <LeadTranscript transcript={lead.transcript} />}
+          {/* Transcript */}
+          {hasTranscript && <LeadTranscript transcript={lead.transcript!} />}
+
+          {/* Facts & Description */}
           <LeadFacts lead={lead} />
+
+          {/* Activity feed */}
+          {hasActivities && <LeadActivityFeed activities={lead.activities!} />}
         </div>
-        <LeadTimeline timeline={lead.timeline} />
+
+        {/* Timeline sidebar */}
+        <LeadTimeline timeline={lead.timeline ?? []} />
       </div>
     </div>
   );

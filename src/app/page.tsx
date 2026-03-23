@@ -6,10 +6,12 @@ import { LeadsChart } from "@/components/dashboard/leads-chart";
 import { RecentLeads } from "@/components/dashboard/recent-leads";
 import { ActivityFeed } from "@/components/dashboard/activity-feed";
 import { api } from "@/lib/api";
+import { useAuth } from "@/lib/auth-context";
 import type { DashboardStats } from "@/lib/api";
 import type { Lead, ActivityItem } from "@/lib/types";
 
 export default function DashboardPage() {
+  const { user } = useAuth();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [recentLeads, setRecentLeads] = useState<Lead[]>([]);
   const [activity, setActivity] = useState<ActivityItem[]>([]);
@@ -46,7 +48,7 @@ export default function DashboardPage() {
           <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-gray-900">
             DASHBOARD
           </h1>
-          <p className="mt-1 text-gray-500">Welcome back, Mike</p>
+          <p className="mt-1 text-gray-500">Welcome back{user?.name ? `, ${user.name.split(" ")[0]}` : ""}</p>
         </div>
         <div className="flex items-center justify-center py-20 text-gray-400">
           Loading...
@@ -61,7 +63,7 @@ export default function DashboardPage() {
         <h1 className="font-[family-name:var(--font-display)] text-4xl tracking-wider text-gray-900">
           DASHBOARD
         </h1>
-        <p className="mt-1 text-gray-500">Welcome back, Mike</p>
+        <p className="mt-1 text-gray-500">Welcome back{user?.name ? `, ${user.name.split(" ")[0]}` : ""}</p>
       </div>
       {stats && <KpiCards stats={stats} />}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">

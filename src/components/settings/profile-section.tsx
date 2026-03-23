@@ -1,17 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/auth-context";
 
 export function ProfileSection() {
-  const [name, setName] = useState("Mike Thompson");
-  const [company, setCompany] = useState(
-    "Mike's Plumbing & Home Services"
-  );
-  const [phone, setPhone] = useState("(602) 555-0147");
-  const [email, setEmail] = useState("mike@mikesplumbing.com");
+  const { user, organization } = useAuth();
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setName(user.name ?? "");
+      setEmail(user.email ?? "");
+    }
+    if (organization) {
+      setCompany(organization.name ?? "");
+    }
+  }, [user, organization]);
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { api } from "@/lib/api";
 import type { Appointment } from "@/lib/types";
 import { CalendarStats } from "@/components/calendar/calendar-stats";
@@ -8,11 +8,11 @@ import { WeekHeader } from "@/components/calendar/week-header";
 import { WeekGrid } from "@/components/calendar/week-grid";
 import { DaySelector } from "@/components/calendar/day-selector";
 
-function getWeekDays(): string[] {
+function getWeekDays(offset: number = 0): string[] {
   const today = new Date();
   const dayOfWeek = today.getDay(); // 0 = Sunday
   const sunday = new Date(today);
-  sunday.setDate(today.getDate() - dayOfWeek);
+  sunday.setDate(today.getDate() - dayOfWeek + offset * 7);
 
   const days: string[] = [];
   for (let i = 0; i < 7; i++) {
@@ -28,11 +28,19 @@ function getTodayStr(): string {
 }
 
 export default function CalendarPage() {
-  const WEEK_DAYS = getWeekDays();
   const TODAY = getTodayStr();
+  const [weekOffset, setWeekOffset] = useState(0);
+  const weekDays = getWeekDays(weekOffset);
   const [selectedDay, setSelectedDay] = useState(TODAY);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const goToPrevWeek = useCallback(() => setWeekOffset((o) => o - 1), []);
+  const goToNextWeek = useCallback(() => setWeekOffset((o) => o + 1), []);
+  const goToToday = useCallback(() => {
+    setWeekOffset(0);
+    setSelectedDay(TODAY);
+  }, [TODAY]);
 
   useEffect(() => {
     async function fetchAppointments() {
@@ -64,16 +72,23 @@ export default function CalendarPage() {
         <>
           <CalendarStats appointments={appointments} today={TODAY} />
           <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
-            <WeekHeader weekDays={WEEK_DAYS} today={TODAY} />
+            <WeekHeader
+              weekDays={weekDays}
+              today={TODAY}
+              onPrevWeek={goToPrevWeek}
+              onNextWeek={goToNextWeek}
+              onToday={goToToday}
+              isCurrentWeek={weekOffset === 0}
+            />
             <DaySelector
-              weekDays={WEEK_DAYS}
+              weekDays={weekDays}
               selectedDay={selectedDay}
               onSelectDay={setSelectedDay}
               today={TODAY}
             />
             <WeekGrid
               appointments={appointments}
-              weekDays={WEEK_DAYS}
+              weekDays={weekDays}
               selectedDay={selectedDay}
               today={TODAY}
             />

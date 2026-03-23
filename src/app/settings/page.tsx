@@ -9,15 +9,15 @@ import {
 import { ProfileSection } from "@/components/settings/profile-section";
 import { ServicesSection } from "@/components/settings/services-section";
 import { PlatformsSection } from "@/components/settings/platforms-section";
-import { AiScriptSection } from "@/components/settings/ai-script-section";
 import { AlertsSection } from "@/components/settings/alerts-section";
 import { PlanSection } from "@/components/settings/plan-section";
+import { IntegrationsSection } from "@/components/settings/integrations-section";
 
 const tabs = [
   { value: "profile", label: "Profile", component: ProfileSection },
   { value: "services", label: "Services & Pricing", component: ServicesSection },
   { value: "platforms", label: "Platforms", component: PlatformsSection },
-  { value: "ai-script", label: "AI Script", component: AiScriptSection },
+  { value: "integrations", label: "Integrations", component: IntegrationsSection },
   { value: "alerts", label: "Alerts", component: AlertsSection },
   { value: "plan", label: "Plan & Billing", component: PlanSection },
 ];

@@ -12,11 +12,20 @@ interface LeadFactsProps {
 }
 
 export function LeadFacts({ lead }: LeadFactsProps) {
+  const hasFactsGrid = lead.urgency || lead.budget || lead.competingQuotes != null || lead.propertyType;
+  const hasDescription = !!lead.description;
+
+  if (!hasFactsGrid && !hasDescription) {
+    return null;
+  }
+
   return (
     <div className="space-y-4">
       {/* Facts grid */}
+      {hasFactsGrid && (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Urgency */}
+        {lead.urgency && (
         <div className="bg-gray-50 rounded-lg p-4">
           <div className="flex items-center gap-2 text-gray-500">
             <AlertTriangle className="h-4 w-4 text-gray-400" />
@@ -30,8 +39,10 @@ export function LeadFacts({ lead }: LeadFactsProps) {
             {lead.urgency}
           </p>
         </div>
+        )}
 
         {/* Budget */}
+        {lead.budget && (
         <div className="bg-gray-50 rounded-lg p-4">
           <div className="flex items-center gap-2 text-gray-500">
             <DollarSign className="h-4 w-4 text-gray-400" />
@@ -43,8 +54,10 @@ export function LeadFacts({ lead }: LeadFactsProps) {
             {lead.budget}
           </p>
         </div>
+        )}
 
         {/* Competing Quotes */}
+        {lead.competingQuotes != null && (
         <div className="bg-gray-50 rounded-lg p-4">
           <div className="flex items-center gap-2 text-gray-500">
             <BarChart3 className="h-4 w-4 text-gray-400" />
@@ -56,8 +69,10 @@ export function LeadFacts({ lead }: LeadFactsProps) {
             {lead.competingQuotes}
           </p>
         </div>
+        )}
 
         {/* Property Type */}
+        {lead.propertyType && (
         <div className="bg-gray-50 rounded-lg p-4">
           <div className="flex items-center gap-2 text-gray-500">
             <Home className="h-4 w-4 text-gray-400" />
@@ -69,9 +84,12 @@ export function LeadFacts({ lead }: LeadFactsProps) {
             {lead.propertyType}
           </p>
         </div>
+        )}
       </div>
+      )}
 
       {/* Description */}
+      {hasDescription && (
       <div className="bg-gray-50 rounded-lg p-4">
         <span className="text-xs font-medium uppercase tracking-wider text-gray-500">
           Description
@@ -80,6 +98,7 @@ export function LeadFacts({ lead }: LeadFactsProps) {
           {lead.description}
         </blockquote>
       </div>
+      )}
     </div>
   );
 }

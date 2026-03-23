@@ -10,7 +10,7 @@ export function CalendarStats({ appointments, today }: CalendarStatsProps) {
   const totalWeek = appointments.length;
   const confirmedCount = appointments.filter((a) => a.status === "confirmed").length;
   const pendingCount = appointments.filter((a) => a.status === "pending").length;
-  const todayCount = appointments.filter((a) => a.date === today).length;
+  const todayCount = appointments.filter((a) => (a.date || "").split("T")[0] === today).length;
 
   const stats = [
     {

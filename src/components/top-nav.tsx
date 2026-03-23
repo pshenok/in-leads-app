@@ -6,21 +6,26 @@ import {
   Zap,
   LayoutDashboard,
   Users,
+  Bot,
   CalendarDays,
   Settings,
   Bell,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/auth-context";
 
 const navItems = [
   { label: "Home", href: "/", icon: LayoutDashboard },
   { label: "Leads", href: "/leads", icon: Users },
+  { label: "Agents", href: "/agents", icon: Bot },
   { label: "Calendar", href: "/calendar", icon: CalendarDays },
   { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export function TopNav() {
   const pathname = usePathname();
+  const { user, logout } = useAuth();
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 hidden h-16 border-b border-gray-200 bg-white lg:block">
@@ -68,8 +73,15 @@ export function TopNav() {
             <Bell className="h-5 w-5" />
           </button>
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-xs font-semibold text-white">
-            M
+            {user?.name?.charAt(0).toUpperCase() ?? "?"}
           </div>
+          <button
+            onClick={logout}
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition-colors hover:text-gray-600"
+            aria-label="Log out"
+          >
+            <LogOut className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </header>

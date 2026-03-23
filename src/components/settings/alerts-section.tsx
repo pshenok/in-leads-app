@@ -21,7 +21,7 @@ const alertToggles: AlertToggle[] = [
 ];
 
 export function AlertsSection() {
-  const [phone, setPhone] = useState("(602) 555-0147");
+  const [phone, setPhone] = useState("");
   const [toggles, setToggles] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(alertToggles.map((t) => [t.id, t.defaultChecked]))
   );
